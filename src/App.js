@@ -18,7 +18,7 @@ export default class App extends Component {
         phone: '',
       },
 
-      PersonalDetailsStore: {
+      personalDetailsStore: {
         name: '',
         email: '',
         phone: '',
@@ -29,8 +29,10 @@ export default class App extends Component {
     this.submitInputState = this.submitInputState.bind(this);
   }
 
+  //onChange function to update the state of the targeted input field//
+
   updateInputState = (e, section, field) => {
-    const previousState = this.state[section] 
+    const previousState = this.state[section];
     this.setState({
       [section]: {
         ...previousState,
@@ -40,32 +42,52 @@ export default class App extends Component {
     setTimeout(() => console.log(this.state[`${section}`]), 100);
   };
 
+  //onSubmit function to update the stored state of the given section//
+
   submitInputState = (e, section) => {
     e.preventDefault();
     if (section === 'personalDetailsInput') {
       this.setState({
-        PersonalDetailsStore: {
+        personalDetailsStore: {
           name: this.state.personalDetailsInput.name,
           email: this.state.personalDetailsInput.email,
           phone: this.state.personalDetailsInput.phone,
         },
       });
-      setTimeout(() => console.log(this.state.PersonalDetailsStore), 100);
+      setTimeout(() => console.log(this.state.personalDetailsStore), 100);
     }
     return;
   };
 
   render() {
-    //const { personalDetailsInput, PersonalDetailsStore } = this.state;
+    const { personalDetailsStore } = this.state;
+    const submitInputState = this.submitInputState;
+    const updateInputState = this.updateInputState;
 
     return (
       <>
         <Header />
-        <PersonalDetails updateInputState={this.updateInputState} submitInputState={this.submitInputState}/>
-        <Profile updateInputState={this.updateInputState} />
-        <EmploymentHistory updateInputState={this.updateInputState} />
-        <Skills updateInputState={this.updateInputState} />
-        <Education updateInputState={this.updateInputState} />
+        <PersonalDetails
+          updateInputState={updateInputState}
+          submitInputState={submitInputState}
+          personalDetailsStore ={personalDetailsStore}
+        />
+        <Profile
+          updateInputState={updateInputState}
+          submitInputState={submitInputState}
+        />
+        <EmploymentHistory
+          updateInputState={updateInputState}
+          submitInputState={submitInputState}
+        />
+        <Skills
+          updateInputState={updateInputState}
+          submitInputState={submitInputState}
+        />
+        <Education
+          updateInputState={updateInputState}
+          submitInputState={submitInputState}
+        />
       </>
     );
   }

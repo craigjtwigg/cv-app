@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
 
+//'Input Mode' sub-component//
+
 class PersonalDetailsInput extends Component {
   render() {
     return (
@@ -75,6 +77,21 @@ class PersonalDetailsInput extends Component {
   }
 }
 
+class PersonalDetailsPreview extends Component {
+  render() {
+    return (
+      <div>
+        {
+          //dummy or user inputted values to be rendered using this.props.personalDetailsStore//
+        }
+      </div>
+    )
+  }
+}
+
+
+//sub-components to be toggled within the main component using conditional rendering dependant on 'mode' state//
+
 export default class PersonalDetails extends Component {
   render() {
     return (
@@ -83,6 +100,9 @@ export default class PersonalDetails extends Component {
           updateInputState={this.props.updateInputState}
           submitInputState={this.props.submitInputState}
         />
+
+        <PersonalDetailsPreview personalDetailsStore={this.props.personalDetailsStore} />
+        
       </div>
     );
   }
