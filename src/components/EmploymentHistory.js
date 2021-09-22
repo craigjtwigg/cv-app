@@ -4,7 +4,7 @@ export default class EmploymentHistory extends Component {
     render() {
         return (
             <div>
-                <h2 class="section-header">
+                <h2 className="section-header">
                     Employment History
                 </h2>
             </div>

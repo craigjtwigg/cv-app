@@ -1,22 +1,88 @@
 import React, { Component } from 'react';
 
-export default class PersonalDetails extends Component {
+class PersonalDetailsInput extends Component {
   render() {
     return (
       <div>
         <h2 className="section header">Personal Details</h2>
-        <form className="input-form" id="personal-details-form">
-          <label htmlFor="personal-details-name-input">Name: </label>
-          <input type="text" className="input-field" id="personal-details-name-input" />
+        <form
+          onSubmit={(e) =>
+            this.props.submitInputState(e, e.target.dataset.section)
+          }
+          data-section="personalDetailsInput"
+          className="input-form"
+          id="personalDetailsForm"
+        >
+          <label htmlFor="personalDetailsNameInput">Name: </label>
+          <input
+            type="text"
+            onChange={(e) =>
+              this.props.updateInputState(
+                e,
+                e.target.dataset.section,
+                e.target.dataset.field
+              )
+            }
+            data-section="personalDetailsInput"
+            data-field="name"
+            className="input-field"
+            id="personalDetailsNameInput"
+          />
 
-          <label htmlFor="personal-details-email-input">Email: </label>
-          <input type="email" className="input-field" id="personal-details-email-input" />
+          <label htmlFor="personalDetailsEmailInput">Email: </label>
+          <input
+            type="email"
+            onChange={(e) =>
+              this.props.updateInputState(
+                e,
+                e.target.dataset.section,
+                e.target.dataset.field
+              )
+            }
+            data-section="personalDetailsInput"
+            data-field="email"
+            className="input-field"
+            id="personalDetailsEmailInput"
+          />
 
-          <label htmlFor="personal-details-phone-input">Phone: </label>
-          <input type="text" className="input-field" id="personal-details-phone-input" />
+          <label htmlFor="personalDetailsPhoneInput">Phone: </label>
+          <input
+            type="text"
+            onChange={(e) =>
+              this.props.updateInputState(
+                e,
+                e.target.dataset.section,
+                e.target.dataset.field
+              )
+            }
+            data-section="personalDetailsInput"
+            data-field="phone"
+            className="input-field"
+            id="personalDetailsPhoneInput"
+          />
 
-          <button type="submit" className="section-submit-button" id="personal-details-submit-button">Submit</button>
+          <button
+            type="submit"
+            data-section="personalDetailsInput"
+            className="section-submit-button"
+            id="personalDetailsSubmitButton"
+          >
+            Submit
+          </button>
         </form>
+      </div>
+    );
+  }
+}
+
+export default class PersonalDetails extends Component {
+  render() {
+    return (
+      <div>
+        <PersonalDetailsInput
+          updateInputState={this.props.updateInputState}
+          submitInputState={this.props.submitInputState}
+        />
       </div>
     );
   }
