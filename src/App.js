@@ -27,7 +27,23 @@ export default class App extends Component {
           profile: '',
         },
         profileStore: [],
-      }
+      },
+      employmentHistory: {
+        employmentHistoryInput: {
+          company: '',
+          title: '',
+          start: '',
+          end: '',
+          description: '',
+        },
+        employmentHistoryStore: [],
+      },
+      skills: {
+        skillsInput: {
+          skill: '',
+        },
+        skillsStore: [],
+      },
     };
 
     this.updateInputState = this.updateInputState.bind(this);

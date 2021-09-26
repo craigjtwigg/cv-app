@@ -4,7 +4,7 @@
   text-align: center;
 }
 
-#personalDetailsForm {
+.input-form {
   display: flex;
   flex-direction: column;
   width: 90vw;
