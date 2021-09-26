@@ -19,11 +19,7 @@ export default class App extends Component {
           phone: '',
         },
 
-        personalDetailsStore: {
-          name: '',
-          email: '',
-          phone: '',
-        },
+        personalDetailsStore: []
       },
     };
 
@@ -42,9 +38,8 @@ export default class App extends Component {
           ...sectionPreviousState,
           [field]: e.target.value,
         },
-        [`${category}Store`]: {
-          ...storedState,
-        },
+        [`${category}Store`]: storedState,
+      
       },
     });
     setTimeout(() => console.log(this.state[`${category}`][`${section}`]), 100);
@@ -57,11 +52,10 @@ export default class App extends Component {
     if (section === 'personalDetailsInput') {
       this.setState({
         personalDetails: {
-          personalDetailsStore: {
-            name: this.state.personalDetails.personalDetailsInput.name,
-            email: this.state.personalDetails.personalDetailsInput.email,
-            phone: this.state.personalDetails.personalDetailsInput.phone,
+          personalDetailsInput: {
+            ...this.state.personalDetails.personalDetailsInput,
           },
+          personalDetailsStore: this.state.personalDetails.personalDetailsStore.concat(this.state.personalDetails.personalDetailsInput),
         },
       });
       setTimeout(
