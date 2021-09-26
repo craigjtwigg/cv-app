@@ -22,6 +22,12 @@ export default class App extends Component {
 
         personalDetailsStore: [],
       },
+      profile: {
+        profileInput: {
+          profile: '',
+        },
+        profileStore: [],
+      }
     };
 
     this.updateInputState = this.updateInputState.bind(this);
@@ -35,6 +41,7 @@ export default class App extends Component {
     const sectionPreviousState = this.state[category][`${category}Input`];
     const storedState = this.state[category][`${category}Store`];
     this.setState({
+      ...this.state,
       [category]: {
         [`${category}Input`]: {
           ...sectionPreviousState,
@@ -64,6 +71,7 @@ export default class App extends Component {
   storeCategoryState = (category) => {
     setTimeout(() => {
       this.setState({
+        ...this.state,
         [category]: {
           [`${category}Input`]: {
             ...this.state[category][`${category}Input`],
@@ -87,7 +95,7 @@ export default class App extends Component {
   };
 
   render() {
-    const { personalDetailsStore } = this.state;
+    const { personalDetailsStore, profileStore } = this.state;
     const submitInputState = this.submitInputState;
     const updateInputState = this.updateInputState;
 
@@ -102,6 +110,7 @@ export default class App extends Component {
         <Profile
           updateInputState={updateInputState}
           submitInputState={submitInputState}
+          profileStore={profileStore}
         />
         <EmploymentHistory
           updateInputState={updateInputState}
