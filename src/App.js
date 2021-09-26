@@ -20,7 +20,7 @@ export default class App extends Component {
           phone: '',
         },
 
-        personalDetailsStore: []
+        personalDetailsStore: [],
       },
     };
 
@@ -30,41 +30,36 @@ export default class App extends Component {
 
   //onChange function to update the state of the targeted input field//
 
-  updateInputState = (e, section, category, field) => {
-    const sectionPreviousState = this.state[category][section];
+  updateInputState = (e, category, field) => {
+    const sectionPreviousState = this.state[category][`${category}Input`];
     const storedState = this.state[category][`${category}Store`];
     this.setState({
       [category]: {
-        [section]: {
+        [`${category}Input`]: {
           ...sectionPreviousState,
           [field]: e.target.value,
           key: uuidv4(),
         },
         [`${category}Store`]: storedState,
-      
       },
     });
-    setTimeout(() => console.log(this.state[`${category}`][`${section}`]), 100);
   };
 
   //onSubmit function to update the stored state of the given section//
 
-  submitInputState = (e, section) => {
+  submitInputState = (e, category) => {
     e.preventDefault();
-    if (section === 'personalDetailsInput') {
-      this.setState({
-        personalDetails: {
-          personalDetailsInput: {
-            ...this.state.personalDetails.personalDetailsInput,
-          },
-          personalDetailsStore: this.state.personalDetails.personalDetailsStore.concat(this.state.personalDetails.personalDetailsInput),
+    this.setState({
+      [category]: {
+        [`${category}Input`]: {
+          ...this.state[category][`${category}Input`],
         },
-      });
-      setTimeout(
-        () => console.log(this.state.personalDetails.personalDetailsStore),
-        100
-      );
-    }
+        [`${category}Store`]: this.state[category][`${category}Store`].concat(
+          this.state[category][`${category}Input`]
+        ),
+      },
+    });
+
     return;
   };
 

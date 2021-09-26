@@ -9,7 +9,7 @@ class PersonalDetailsInput extends Component {
         <h2 className="section header">Personal Details</h2>
         <form
           onSubmit={(e) =>
-            this.props.submitInputState(e, e.target.dataset.section)
+            this.props.submitInputState(e, e.target.dataset.category)
           }
           data-category="personalDetails"
           data-section="personalDetailsInput"
@@ -22,7 +22,6 @@ class PersonalDetailsInput extends Component {
             onChange={(e) =>
               this.props.updateInputState(
                 e,
-                e.target.dataset.section,
                 e.target.dataset.category,
                 e.target.dataset.field
               )
@@ -40,7 +39,6 @@ class PersonalDetailsInput extends Component {
             onChange={(e) =>
               this.props.updateInputState(
                 e,
-                e.target.dataset.section,
                 e.target.dataset.category,
                 e.target.dataset.field
               )
@@ -58,7 +56,6 @@ class PersonalDetailsInput extends Component {
             onChange={(e) =>
               this.props.updateInputState(
                 e,
-                e.target.dataset.section,
                 e.target.dataset.category,
                 e.target.dataset.field
               )
