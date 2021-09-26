@@ -6,6 +6,7 @@ import Skills from './components/Skills';
 import Education from './components/Education';
 import EmploymentHistory from './components/EmploymentHistory';
 import React, { Component } from 'react';
+import { v4 as uuidv4 } from 'uuid';
 
 export default class App extends Component {
   constructor(props) {
@@ -37,6 +38,7 @@ export default class App extends Component {
         [section]: {
           ...sectionPreviousState,
           [field]: e.target.value,
+          key: uuidv4(),
         },
         [`${category}Store`]: storedState,
       
