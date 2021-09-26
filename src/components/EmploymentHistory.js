@@ -1,14 +1,12 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
 export default class EmploymentHistory extends Component {
-    render() {
-        return (
-            <div>
-                <h2 className="section-header">
-                    Employment History
-                </h2>
+  render() {
+    return (
+      <div>
+        <h2 className="section-header">Employment History</h2>
 
-                        <form
+        <form
           onSubmit={(e) =>
             this.props.submitInputState(e, e.target.dataset.category)
           }
@@ -68,7 +66,7 @@ export default class EmploymentHistory extends Component {
             id="employmentHistoryStartInput"
           />
 
-                    <label htmlFor="employmentHistoryEndInput">End Date: </label>
+          <label htmlFor="employmentHistoryEndInput">End Date: </label>
           <input
             type="text"
             onChange={(e) =>
@@ -85,9 +83,11 @@ export default class EmploymentHistory extends Component {
             id="employmentHistoryStartInput"
           />
 
-          <label htmlFor="employmentHistoryDescriptionInput">Desicrption: </label>
+          <label htmlFor="employmentHistoryDescriptionInput">
+            Desicrption:{' '}
+          </label>
 
-                    <textarea
+          <textarea
             onChange={(e) =>
               this.props.updateInputState(
                 e,
@@ -104,7 +104,6 @@ export default class EmploymentHistory extends Component {
             cols="50"
           ></textarea>
 
-
           <button
             type="submit"
             data-category="employmentHistory"
@@ -115,8 +114,7 @@ export default class EmploymentHistory extends Component {
             Submit
           </button>
         </form>
-      
-            </div>
-        )
-    }
+      </div>
+    );
+  }
 }

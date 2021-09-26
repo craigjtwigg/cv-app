@@ -44,6 +44,15 @@ export default class App extends Component {
         },
         skillsStore: [],
       },
+      education: {
+        educationInput: {
+          school: '',
+          start: '',
+          end: '',
+          qualifications: '',
+        },
+        educationStore: [],
+      },
     };
 
     this.updateInputState = this.updateInputState.bind(this);
@@ -111,7 +120,7 @@ export default class App extends Component {
   };
 
   render() {
-    const { personalDetailsStore, profileStore } = this.state;
+    const { personalDetailsStore, profileStore, employmentHistoryStore, skillsStore, educationStore } = this.state;
     const submitInputState = this.submitInputState;
     const updateInputState = this.updateInputState;
 
@@ -131,14 +140,17 @@ export default class App extends Component {
         <EmploymentHistory
           updateInputState={updateInputState}
           submitInputState={submitInputState}
+          employmentHistoryStore={employmentHistoryStore}
         />
         <Skills
           updateInputState={updateInputState}
           submitInputState={submitInputState}
+          skillsStore={skillsStore}
         />
         <Education
           updateInputState={updateInputState}
           submitInputState={submitInputState}
+          educationStore={educationStore}
         />
       </>
     );
