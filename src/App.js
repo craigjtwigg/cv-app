@@ -12,16 +12,18 @@ export default class App extends Component {
     super(props);
 
     this.state = {
-      personalDetailsInput: {
-        name: '',
-        email: '',
-        phone: '',
-      },
+      personalDetails: {
+        personalDetailsInput: {
+          name: '',
+          email: '',
+          phone: '',
+        },
 
-      personalDetailsStore: {
-        name: '',
-        email: '',
-        phone: '',
+        personalDetailsStore: {
+          name: '',
+          email: '',
+          phone: '',
+        },
       },
     };
 
@@ -31,15 +33,21 @@ export default class App extends Component {
 
   //onChange function to update the state of the targeted input field//
 
-  updateInputState = (e, section, field) => {
-    const previousState = this.state[section];
+  updateInputState = (e, section, category, field) => {
+    const sectionPreviousState = this.state[category][section];
+    const storedState = this.state[category][`${category}Store`];
     this.setState({
-      [section]: {
-        ...previousState,
-        [field]: e.target.value,
+      [category]: {
+        [section]: {
+          ...sectionPreviousState,
+          [field]: e.target.value,
+        },
+        [`${category}Store`]: {
+          ...storedState,
+        },
       },
     });
-    setTimeout(() => console.log(this.state[`${section}`]), 100);
+    setTimeout(() => console.log(this.state[`${category}`][`${section}`]), 100);
   };
 
   //onSubmit function to update the stored state of the given section//
@@ -48,13 +56,18 @@ export default class App extends Component {
     e.preventDefault();
     if (section === 'personalDetailsInput') {
       this.setState({
-        personalDetailsStore: {
-          name: this.state.personalDetailsInput.name,
-          email: this.state.personalDetailsInput.email,
-          phone: this.state.personalDetailsInput.phone,
+        personalDetails: {
+          personalDetailsStore: {
+            name: this.state.personalDetails.personalDetailsInput.name,
+            email: this.state.personalDetails.personalDetailsInput.email,
+            phone: this.state.personalDetails.personalDetailsInput.phone,
+          },
         },
       });
-      setTimeout(() => console.log(this.state.personalDetailsStore), 100);
+      setTimeout(
+        () => console.log(this.state.personalDetails.personalDetailsStore),
+        100
+      );
     }
     return;
   };
@@ -70,7 +83,7 @@ export default class App extends Component {
         <PersonalDetails
           updateInputState={updateInputState}
           submitInputState={submitInputState}
-          personalDetailsStore ={personalDetailsStore}
+          personalDetailsStore={personalDetailsStore}
         />
         <Profile
           updateInputState={updateInputState}

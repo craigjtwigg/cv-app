@@ -11,6 +11,7 @@ class PersonalDetailsInput extends Component {
           onSubmit={(e) =>
             this.props.submitInputState(e, e.target.dataset.section)
           }
+          data-category="personalDetails"
           data-section="personalDetailsInput"
           className="input-form"
           id="personalDetailsForm"
@@ -22,9 +23,11 @@ class PersonalDetailsInput extends Component {
               this.props.updateInputState(
                 e,
                 e.target.dataset.section,
+                e.target.dataset.category,
                 e.target.dataset.field
               )
             }
+            data-category="personalDetails"
             data-section="personalDetailsInput"
             data-field="name"
             className="input-field"
@@ -38,9 +41,11 @@ class PersonalDetailsInput extends Component {
               this.props.updateInputState(
                 e,
                 e.target.dataset.section,
+                e.target.dataset.category,
                 e.target.dataset.field
               )
             }
+            data-category="personalDetails"
             data-section="personalDetailsInput"
             data-field="email"
             className="input-field"
@@ -54,9 +59,11 @@ class PersonalDetailsInput extends Component {
               this.props.updateInputState(
                 e,
                 e.target.dataset.section,
+                e.target.dataset.category,
                 e.target.dataset.field
               )
             }
+            data-category="personalDetails"
             data-section="personalDetailsInput"
             data-field="phone"
             className="input-field"
@@ -65,6 +72,7 @@ class PersonalDetailsInput extends Component {
 
           <button
             type="submit"
+            data-category="personalDetails"
             data-section="personalDetailsInput"
             className="section-submit-button"
             id="personalDetailsSubmitButton"
