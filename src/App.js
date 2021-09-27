@@ -1,9 +1,6 @@
 import './styles/App.css';
 import Header from './components/Header';
-import {
-  PersonalDetailsInput,
-  PersonalDetailsPreview,
-} from './components/PersonalDetails';
+import PersonalDetails from './components/PersonalDetails';
 import Profile from './components/Profiile';
 import Skills from './components/Skills';
 import Education from './components/Education';
@@ -154,19 +151,13 @@ export default class App extends Component {
       <>
         <Header />
 
-        {personalDetails.personalDetailsPreview ? 
-          <PersonalDetailsPreview
-            personalDetailsStore={personalDetails.personalDetailsStore}
-          />
 
-        : 
-          <PersonalDetailsInput
+         <PersonalDetails
             updateInputState={updateInputState}
             submitInputState={submitInputState}
-            personalDetailsStore={personalDetails.personalDetailsStore}
-            personalDetailsPreview={personalDetails.personalDetailsPreview}
+            personalDetails={personalDetails}
+
           />
-        }
 
         <Profile
           updateInputState={updateInputState}
