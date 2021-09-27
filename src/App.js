@@ -78,7 +78,7 @@ export default class App extends Component {
           [field]: e.target.value,
         },
         [`${category}Store`]: storedState,
-        [`${category}Preview`]: this.state[category][`${category}Preview`]
+        [`${category}Preview`]: this.state[category][`${category}Preview`],
       },
     });
   };
@@ -119,7 +119,7 @@ export default class App extends Component {
           [`${category}Store`]: this.state[category][`${category}Store`].concat(
             this.state[category][`${category}Input`]
           ),
-           [`${category}Preview`]: !this.state[category][`${category}Preview`]
+          [`${category}Preview`]: !this.state[category][`${category}Preview`],
         },
       });
     }, 100);
@@ -130,16 +130,16 @@ export default class App extends Component {
   submitInputState = (e, category) => {
     e.preventDefault();
     this.generateId(category);
-   // setTimeout(this.toggleView(category), 100);
+    // setTimeout(this.toggleView(category), 100);
     setTimeout(this.storeCategoryState(category), 100);
-    
+
     return;
   };
 
   render() {
     const {
       personalDetails,
-      profileStore,
+      profile,
       employmentHistoryStore,
       skillsStore,
       educationStore,
@@ -151,18 +151,16 @@ export default class App extends Component {
       <>
         <Header />
 
-
-         <PersonalDetails
-            updateInputState={updateInputState}
-            submitInputState={submitInputState}
-            personalDetails={personalDetails}
-
-          />
+        <PersonalDetails
+          updateInputState={updateInputState}
+          submitInputState={submitInputState}
+          personalDetails={personalDetails}
+        />
 
         <Profile
           updateInputState={updateInputState}
           submitInputState={submitInputState}
-          profileStore={profileStore}
+          profile={profile}
         />
         <EmploymentHistory
           updateInputState={updateInputState}

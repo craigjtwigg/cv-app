@@ -6,7 +6,6 @@ class PersonalDetailsInput extends Component {
   render() {
     return (
       <div>
-        <h2 className="section header">Personal Details</h2>
         <form
           onSubmit={(e) =>
             this.props.submitInputState(e, e.target.dataset.category)
@@ -100,6 +99,7 @@ export default class PersonalDetails extends Component {
   render() {
     return (
       <div>
+        <h2 className="section header">Personal Details</h2>
         {this.props.personalDetails.personalDetailsPreview ? (
           <PersonalDetailsPreview
             personalDetailsStore={
