@@ -1,6 +1,9 @@
 import './styles/App.css';
 import Header from './components/Header';
-import PersonalDetails from './components/PersonalDetails';
+import {
+  PersonalDetailsInput,
+  PersonalDetailsPreview,
+} from './components/PersonalDetails';
 import Profile from './components/Profiile';
 import Skills from './components/Skills';
 import Education from './components/Education';
@@ -19,14 +22,15 @@ export default class App extends Component {
           email: '',
           phone: '',
         },
-
         personalDetailsStore: [],
+        personalDetailsPreview: false,
       },
       profile: {
         profileInput: {
           profile: '',
         },
         profileStore: [],
+        profilePreview: false,
       },
       employmentHistory: {
         employmentHistoryInput: {
@@ -37,12 +41,14 @@ export default class App extends Component {
           description: '',
         },
         employmentHistoryStore: [],
+        employmentHistoryPreview: false,
       },
       skills: {
         skillsInput: {
           skill: '',
         },
         skillsStore: [],
+        skillsPreview: false,
       },
       education: {
         educationInput: {
@@ -52,12 +58,14 @@ export default class App extends Component {
           qualifications: '',
         },
         educationStore: [],
+        educationPreview: false,
       },
     };
 
     this.updateInputState = this.updateInputState.bind(this);
     this.submitInputState = this.submitInputState.bind(this);
     this.generateId = this.generateId.bind(this);
+    this.toggleView = this.toggleView.bind(this);
   }
 
   //onChange function to update the state of the targeted input field//
@@ -73,11 +81,21 @@ export default class App extends Component {
           [field]: e.target.value,
         },
         [`${category}Store`]: storedState,
+        [`${category}Preview`]: this.state[category][`${category}Preview`]
       },
     });
   };
 
-//uuid used to asign a unique ID//
+  //method to toggle between input and preview modes//
+
+  toggleView = (category) => {
+    this.setState({
+      ...this.state,
+      [`${category}Preview`]: !this.state[category][`${category}Preview`],
+    });
+  };
+
+  //uuid used to asign a unique ID//
 
   generateId = (category) => {
     this.setState({
@@ -104,6 +122,7 @@ export default class App extends Component {
           [`${category}Store`]: this.state[category][`${category}Store`].concat(
             this.state[category][`${category}Input`]
           ),
+           [`${category}Preview`]: !this.state[category][`${category}Preview`]
         },
       });
     }, 100);
@@ -114,24 +133,41 @@ export default class App extends Component {
   submitInputState = (e, category) => {
     e.preventDefault();
     this.generateId(category);
-    setTimeout(this.storeCategoryState(category), 6000);
-
+   // setTimeout(this.toggleView(category), 100);
+    setTimeout(this.storeCategoryState(category), 100);
+    
     return;
   };
 
   render() {
-    const { personalDetailsStore, profileStore, employmentHistoryStore, skillsStore, educationStore } = this.state;
+    const {
+      personalDetails,
+      profileStore,
+      employmentHistoryStore,
+      skillsStore,
+      educationStore,
+    } = this.state;
     const submitInputState = this.submitInputState;
     const updateInputState = this.updateInputState;
 
     return (
       <>
         <Header />
-        <PersonalDetails
-          updateInputState={updateInputState}
-          submitInputState={submitInputState}
-          personalDetailsStore={personalDetailsStore}
-        />
+
+        {personalDetails.personalDetailsPreview ? 
+          <PersonalDetailsPreview
+            personalDetailsStore={personalDetails.personalDetailsStore}
+          />
+
+        : 
+          <PersonalDetailsInput
+            updateInputState={updateInputState}
+            submitInputState={submitInputState}
+            personalDetailsStore={personalDetails.personalDetailsStore}
+            personalDetailsPreview={personalDetails.personalDetailsPreview}
+          />
+        }
+
         <Profile
           updateInputState={updateInputState}
           submitInputState={submitInputState}

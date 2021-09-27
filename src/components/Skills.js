@@ -1,12 +1,10 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
 export default class Skills extends Component {
-    render() {
-        return (
-            <div>
-                <h2 className="section-header">
-                    Skills
-                </h2>
+  render() {
+    return (
+      <div>
+        <h2 className="section-header">Skills</h2>
 
         <form
           onSubmit={(e) =>
@@ -17,9 +15,9 @@ export default class Skills extends Component {
           className="input-form"
           id="skillsForm"
         >
-
-               <label htmlFor="skillsInput">Add a Skill: </label>
-          <input type="text"
+          <label htmlFor="skillsInput">Add a Skill: </label>
+          <input
+            type="text"
             onChange={(e) =>
               this.props.updateInputState(
                 e,
@@ -45,7 +43,7 @@ export default class Skills extends Component {
             SUBMIT
           </button>
         </form>
-            </div>
-        )
-    }
+      </div>
+    );
+  }
 }

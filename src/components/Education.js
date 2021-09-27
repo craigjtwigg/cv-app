@@ -15,7 +15,9 @@ export default class Education extends Component {
           className="input-form"
           id="educationForm"
         >
-          <label htmlFor="educationSchoolInput">School / College / University: </label>
+          <label htmlFor="educationSchoolInput">
+            School / College / University:{' '}
+          </label>
           <input
             type="text"
             onChange={(e) =>
@@ -32,7 +34,6 @@ export default class Education extends Component {
             id="educationSchoolInput"
           />
 
-         
           <label htmlFor="educationStartInput">Start Date: </label>
           <input
             type="text"
@@ -67,9 +68,7 @@ export default class Education extends Component {
             id="educationStartInput"
           />
 
-          <label htmlFor="educationQualificationsInput">
-            Qualifications:
-          </label>
+          <label htmlFor="educationQualificationsInput">Qualifications:</label>
 
           <textarea
             onChange={(e) =>
