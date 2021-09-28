@@ -24,6 +24,7 @@ class SkillsInput extends Component {
                 e.target.dataset.field
               )
             }
+            value={`${this.props.skillsValues.skill}`}
             id="skillsInput"
             name="skillsInput"
             data-category="skills"
@@ -74,6 +75,7 @@ export default class Skills extends Component {
             submitInputState={this.props.submitInputState}
             skillsStore={this.props.skills.skillsStore}
             skillsPreview={this.props.skills.skillsPreview}
+            skillsValues={this.props.skills.skillsInput}
           />
         )}
 

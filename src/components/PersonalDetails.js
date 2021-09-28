@@ -30,6 +30,7 @@ class PersonalDetailsInput extends Component {
             data-field="name"
             className="input-field"
             id="personalDetailsNameInput"
+            value={`${this.props.personalDetailsValues.name}`}
           />
 
           <label htmlFor="personalDetailsEmailInput">Email: </label>
@@ -47,6 +48,7 @@ class PersonalDetailsInput extends Component {
             data-field="email"
             className="input-field"
             id="personalDetailsEmailInput"
+            value={`${this.props.personalDetailsValues.email}`}
           />
 
           <label htmlFor="personalDetailsPhoneInput">Phone: </label>
@@ -64,6 +66,7 @@ class PersonalDetailsInput extends Component {
             data-field="phone"
             className="input-field"
             id="personalDetailsPhoneInput"
+            value={`${this.props.personalDetailsValues.phone}`}
           />
 
           <button
@@ -116,6 +119,7 @@ export default class PersonalDetails extends Component {
             personalDetailsPreview={
               this.props.personalDetails.personalDetailsPreview
             }
+            personalDetailsValues={this.props.personalDetails.personalDetailsInput}
           />
         )}
       </div>

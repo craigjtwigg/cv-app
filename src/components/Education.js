@@ -30,6 +30,7 @@ class EducationInput extends Component {
             data-field="school"
             className="input-field"
             id="educationSchoolInput"
+            value={`${this.props.educationValues.school}`}
           />
 
           <label htmlFor="educationStartInput">Start Date: </label>
@@ -47,6 +48,7 @@ class EducationInput extends Component {
             data-field="start"
             className="input-field"
             id="educationStartInput"
+            value={`${this.props.educationValues.start}`}
           />
 
           <label htmlFor="educationEndInput">End Date: </label>
@@ -63,7 +65,8 @@ class EducationInput extends Component {
             data-section="educationInput"
             data-field="end"
             className="input-field"
-            id="educationStartInput"
+            id="educationEndInput"
+            value={`${this.props.educationValues.end}`}
           />
 
           <label htmlFor="educationQualificationsInput">Qualifications:</label>
@@ -81,6 +84,7 @@ class EducationInput extends Component {
             data-field="qualifications"
             className="input-field"
             id="employmentQualificationsInput"
+            value={`${this.props.educationValues.qualifications}`}
             rows="4"
             cols="50"
           ></textarea>
@@ -131,6 +135,7 @@ export default class Education extends Component {
             submitInputState={this.props.submitInputState}
             educationStore={this.props.education.educationStore}
             educationPreview={this.props.education.educationPreview}
+            educationValues={this.props.education.educationInput}
           />
         )}
       </div>

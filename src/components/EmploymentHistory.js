@@ -28,6 +28,7 @@ class EmploymentHistoryInput extends Component {
             data-field="company"
             className="input-field"
             id="employmentHistoryCompanyInput"
+            value={`${this.props.employmentHistoryValues.company}`}
           />
 
           <label htmlFor="employmentHistoryTitleInput">Job Title: </label>
@@ -45,6 +46,7 @@ class EmploymentHistoryInput extends Component {
             data-field="title"
             className="input-field"
             id="employmentHistoryTitleInput"
+            value={`${this.props.employmentHistoryValues.title}`}
           />
 
           <label htmlFor="employmentHistoryStartInput">Start Date: </label>
@@ -62,6 +64,7 @@ class EmploymentHistoryInput extends Component {
             data-field="start"
             className="input-field"
             id="employmentHistoryStartInput"
+            value={`${this.props.employmentHistoryValues.start}`}
           />
 
           <label htmlFor="employmentHistoryEndInput">End Date: </label>
@@ -79,6 +82,7 @@ class EmploymentHistoryInput extends Component {
             data-field="end"
             className="input-field"
             id="employmentHistoryStartInput"
+            value={`${this.props.employmentHistoryValues.end}`}
           />
 
           <label htmlFor="employmentHistoryDescriptionInput">
@@ -98,6 +102,7 @@ class EmploymentHistoryInput extends Component {
             data-field="description"
             className="input-field"
             id="employmentHistoryDescriptionInput"
+            value={`${this.props.employmentHistoryValues.description}`}
             rows="4"
             cols="50"
           ></textarea>
@@ -156,6 +161,7 @@ export default class EmploymentHistory extends Component {
             employmentHistoryPreview={
               this.props.employmentHistory.employmentHistoryPreview
             }
+            employmentHistoryValues={this.props.employmentHistory.employmentHistoryInput}
           />
         )}
       </div>

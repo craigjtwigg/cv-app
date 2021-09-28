@@ -31,6 +31,7 @@ class ProfileInput extends Component {
                 e.target.dataset.field
               )
             }
+            value={`${this.props.profileValues.profile}`}
             id="profileInput"
             name="profileInput"
             data-category="profile"
@@ -71,6 +72,7 @@ export default class Profile extends Component {
             submitInputState={this.props.submitInputState}
             profileStore={this.props.profile.profileStore}
             profilePreview={this.props.profile.profilePreview}
+            profileValues={this.props.profile.profileInput}
           />
         )}
       </div>
