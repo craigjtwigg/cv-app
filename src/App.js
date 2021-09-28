@@ -18,6 +18,7 @@ export default class App extends Component {
           name: '',
           email: '',
           phone: '',
+          isInitialInput: true,
         },
         personalDetailsStore: [],
         personalDetailsPreview: false,
@@ -25,6 +26,7 @@ export default class App extends Component {
       profile: {
         profileInput: {
           profile: '',
+          isInitialInput: true,
         },
         profileStore: [],
         profilePreview: false,
@@ -36,6 +38,7 @@ export default class App extends Component {
           start: '',
           end: '',
           description: '',
+          isInitialInput: true,
         },
         employmentHistoryStore: [],
         employmentHistoryPreview: false,
@@ -43,6 +46,7 @@ export default class App extends Component {
       skills: {
         skillsInput: {
           skill: '',
+          isInitialInput: true,
         },
         skillsStore: [],
         skillsPreview: false,
@@ -53,6 +57,7 @@ export default class App extends Component {
           start: '',
           end: '',
           qualifications: '',
+          isInitialInput: true,
         },
         educationStore: [],
         educationPreview: false,
