@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 
-export default class Education extends Component {
+class EducationInput extends Component {
   render() {
     return (
       <div>
-        <h2 className="section-header">Education</h2>
-
         <form
           onSubmit={(e) =>
             this.props.submitInputState(e, e.target.dataset.category)
@@ -97,6 +95,44 @@ export default class Education extends Component {
             Submit
           </button>
         </form>
+      </div>
+    );
+  }
+}
+
+class EducationPreview extends Component {
+  render() {
+    return (
+      <div>
+        <h2 id="schoolPreview">{this.props.educationStore[0].school}</h2>
+
+        <h2 id="startSchoolPreview">{this.props.educationStore[0].start}</h2>
+        <h2 id="endSchoolPreview">{this.props.educationStore[0].end}</h2>
+        <h2 id="qualificationsPreview">
+          {this.props.educationStore[0].qualifications}
+        </h2>
+      </div>
+    );
+  }
+}
+
+export default class Education extends Component {
+  render() {
+    return (
+      <div>
+        <h2 className="section-header">Education</h2>
+        {this.props.education.educationPreview ? (
+          <EducationPreview
+            educationStore={this.props.education.educationStore}
+          />
+        ) : (
+          <EducationInput
+            updateInputState={this.props.updateInputState}
+            submitInputState={this.props.submitInputState}
+            educationStore={this.props.education.educationStore}
+            educationPreview={this.props.education.educationPreview}
+          />
+        )}
       </div>
     );
   }

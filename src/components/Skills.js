@@ -1,11 +1,10 @@
 import React, { Component } from 'react';
 
-export default class Skills extends Component {
+
+class SkillsInput extends Component {
   render() {
     return (
-      <div>
-        <h2 className="section-header">Skills</h2>
-
+       <div>
         <form
           onSubmit={(e) =>
             this.props.submitInputState(e, e.target.dataset.category)
@@ -44,6 +43,44 @@ export default class Skills extends Component {
           </button>
         </form>
       </div>
+    )
+  }
+}
+
+class SkillsPreview extends Component {
+  render() {
+    return (
+      <div>
+         <h2 id="skillsPreview">{this.props.skillsStore[0].skill}</h2>
+      </div>
+    )
+  }
+}
+
+export default class Skills extends Component {
+  render() {
+    return (
+     
+      <div>
+        <h2>Skills</h2>
+
+           {this.props.skills.skillsPreview ? (
+          <SkillsPreview
+            skillsStore={this.props.skills.skillsStore}
+          />
+        ) : (
+          <SkillsInput
+            updateInputState={this.props.updateInputState}
+            submitInputState={this.props.submitInputState}
+            skillsStore={this.props.skills.skillsStore}
+            skillsPreview={this.props.skills.skillsPreview}
+          />
+        )}
+
+
+      </div>
+
+
     );
   }
 }

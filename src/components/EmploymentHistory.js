@@ -1,11 +1,9 @@
 import React, { Component } from 'react';
 
-export default class EmploymentHistory extends Component {
+class EmploymentHistoryInput extends Component {
   render() {
     return (
       <div>
-        <h2 className="section-header">Employment History</h2>
-
         <form
           onSubmit={(e) =>
             this.props.submitInputState(e, e.target.dataset.category)
@@ -114,6 +112,52 @@ export default class EmploymentHistory extends Component {
             Submit
           </button>
         </form>
+      </div>
+    );
+  }
+}
+
+class EmploymentHistoryPreview extends Component {
+  render() {
+    return (
+      <div>
+        <h2 id="companyPreview">
+          {this.props.employmentHistoryStore[0].company}
+        </h2>
+        <h2 id="titlePreview">{this.props.employmentHistoryStore[0].title}</h2>
+        <h2 id="startPreview">{this.props.employmentHistoryStore[0].start}</h2>
+        <h2 id="endPreview">{this.props.employmentHistoryStore[0].end}</h2>
+        <h2 id="descriptionPreview">
+          {this.props.employmentHistoryStore[0].description}
+        </h2>
+      </div>
+    );
+  }
+}
+
+export default class EmploymentHistory extends Component {
+  render() {
+    return (
+      <div>
+        <h2 className="section-header">Employment History</h2>
+        {this.props.employmentHistory.employmentHistoryPreview ? (
+          <EmploymentHistoryPreview
+            employmentHistoryStore={
+              this.props.employmentHistory.employmentHistoryStore
+            }
+          />
+        ) : (
+          <EmploymentHistoryInput
+            updateInputState={this.props.updateInputState}
+            submitInputState={this.props.submitInputState}
+            employmentHistoryStore={
+              this.props.employmentHistory.employmentHistoryStore
+            }
+            employmentHistoryPreview={
+              this.props.employmentHistory.employmentHistoryPreview
+            }
+          />
+        )}
       </div>
     );
   }

@@ -130,7 +130,6 @@ export default class App extends Component {
   submitInputState = (e, category) => {
     e.preventDefault();
     this.generateId(category);
-    // setTimeout(this.toggleView(category), 100);
     setTimeout(this.storeCategoryState(category), 100);
 
     return;
@@ -140,9 +139,9 @@ export default class App extends Component {
     const {
       personalDetails,
       profile,
-      employmentHistoryStore,
-      skillsStore,
-      educationStore,
+      employmentHistory,
+      skills,
+      education,
     } = this.state;
     const submitInputState = this.submitInputState;
     const updateInputState = this.updateInputState;
@@ -165,17 +164,17 @@ export default class App extends Component {
         <EmploymentHistory
           updateInputState={updateInputState}
           submitInputState={submitInputState}
-          employmentHistoryStore={employmentHistoryStore}
+          employmentHistory={employmentHistory}
         />
         <Skills
           updateInputState={updateInputState}
           submitInputState={submitInputState}
-          skillsStore={skillsStore}
+          skills={skills}
         />
         <Education
           updateInputState={updateInputState}
           submitInputState={submitInputState}
-          educationStore={educationStore}
+          education={education}
         />
       </>
     );
