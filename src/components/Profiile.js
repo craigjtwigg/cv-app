@@ -2,11 +2,13 @@ import React, { Component } from 'react';
 
 class ProfilePreview extends Component {
   render() {
-    return (
-      <div>
-        <h2 id="profilePreview">{this.props.profileStore[0].profile}</h2>
+    return this.props.profileStore.map((item) => (
+      <div className="profilePreview" key={`profilePreview:${item.key}`}>
+        <h2 key={`profilePreview:${item.key}`} id="profilePreview">
+          {item.profile}
+        </h2>
       </div>
-    );
+    ));
   }
 }
 
@@ -63,9 +65,7 @@ export default class Profile extends Component {
       <div>
         <h2 className="section-header">Profile</h2>
         {this.props.profile.profilePreview ? (
-          <ProfilePreview
-            profileStore={this.props.profile.profileStore}
-          />
+          <ProfilePreview profileStore={this.props.profile.profileStore} />
         ) : (
           <ProfileInput
             updateInputState={this.props.updateInputState}

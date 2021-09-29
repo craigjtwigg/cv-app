@@ -86,13 +86,19 @@ class PersonalDetailsInput extends Component {
 
 class PersonalDetailsPreview extends Component {
   render() {
-    return (
-      <div>
-        <h2 id="namePreview">{this.props.personalDetailsStore[0].name}</h2>
-        <h2 id="emailPreview">{this.props.personalDetailsStore[0].email}</h2>
-        <h2 id="phonePreview">{this.props.personalDetailsStore[0].phone}</h2>
+    return this.props.personalDetailsStore.map((item) => (
+      <div className="personalDetailsPreview" key={`personalDetailsPreview:${item.key}`}>
+        <h2 key={`namePreview:${item.key}`} id="namePreview">
+          {item.name}
+        </h2>
+        <h2 key={`emailPreview:${item.key}`} id="emailPreview">
+          {item.email}
+        </h2>
+        <h2 key={`phonePreview:${item.key}`} id="phonePreview">
+          {item.phone}
+        </h2>
       </div>
-    );
+    ));
   }
 }
 
@@ -119,7 +125,9 @@ export default class PersonalDetails extends Component {
             personalDetailsPreview={
               this.props.personalDetails.personalDetailsPreview
             }
-            personalDetailsValues={this.props.personalDetails.personalDetailsInput}
+            personalDetailsValues={
+              this.props.personalDetails.personalDetailsInput
+            }
           />
         )}
       </div>

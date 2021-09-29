@@ -124,19 +124,34 @@ class EmploymentHistoryInput extends Component {
 
 class EmploymentHistoryPreview extends Component {
   render() {
-    return (
-      <div>
-        <h2 id="companyPreview">
-          {this.props.employmentHistoryStore[0].company}
+    return this.props.employmentHistoryStore.map((item) => (
+      <div
+        className="employmentHistoryPreview"
+        key={`employmentHistoryPreview:${item.key}`}
+      >
+        <h2
+          key={`employmentHistoryCompanyPreview:${item.key}`}
+          id="companyPreview"
+        >
+          {item.company}
         </h2>
-        <h2 id="titlePreview">{this.props.employmentHistoryStore[0].title}</h2>
-        <h2 id="startPreview">{this.props.employmentHistoryStore[0].start}</h2>
-        <h2 id="endPreview">{this.props.employmentHistoryStore[0].end}</h2>
-        <h2 id="descriptionPreview">
-          {this.props.employmentHistoryStore[0].description}
+        <h2 key={`employmentHistoryTitlePreview:${item.key}`} id="titlePreview">
+          {item.title}
+        </h2>
+        <h2 key={`employmentHistoryStartPreview:${item.key}`} id="startPreview">
+          {item.start}
+        </h2>
+        <h2 key={`employmentHistoryEndPreview:${item.key}`} id="endPreview">
+          {item.end}
+        </h2>
+        <h2
+          key={`employmentHistoryDescriptionPreview:${item.key}`}
+          id="descriptionPreview"
+        >
+          {item.description}
         </h2>
       </div>
-    );
+    ));
   }
 }
 
@@ -161,7 +176,9 @@ export default class EmploymentHistory extends Component {
             employmentHistoryPreview={
               this.props.employmentHistory.employmentHistoryPreview
             }
-            employmentHistoryValues={this.props.employmentHistory.employmentHistoryInput}
+            employmentHistoryValues={
+              this.props.employmentHistory.employmentHistoryInput
+            }
           />
         )}
       </div>

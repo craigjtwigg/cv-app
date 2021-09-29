@@ -1,10 +1,9 @@
 import React, { Component } from 'react';
 
-
 class SkillsInput extends Component {
   render() {
     return (
-       <div>
+      <div>
         <form
           onSubmit={(e) =>
             this.props.submitInputState(e, e.target.dataset.category)
@@ -44,31 +43,30 @@ class SkillsInput extends Component {
           </button>
         </form>
       </div>
-    )
+    );
   }
 }
 
 class SkillsPreview extends Component {
   render() {
-    return (
-      <div>
-         <h2 id="skillsPreview">{this.props.skillsStore[0].skill}</h2>
+    return this.props.skillsStore.map((item) => (
+      <div className="skillsPreview" key={`skillsPreview:${item.key}`}>
+        <h2 key={`skillPreview:${item.key}`} id="skillsPreview">
+          {item.skill}
+        </h2>
       </div>
-    )
+    ));
   }
 }
 
 export default class Skills extends Component {
   render() {
     return (
-     
       <div>
         <h2>Skills</h2>
 
-           {this.props.skills.skillsPreview ? (
-          <SkillsPreview
-            skillsStore={this.props.skills.skillsStore}
-          />
+        {this.props.skills.skillsPreview ? (
+          <SkillsPreview skillsStore={this.props.skills.skillsStore} />
         ) : (
           <SkillsInput
             updateInputState={this.props.updateInputState}
@@ -78,11 +76,7 @@ export default class Skills extends Component {
             skillsValues={this.props.skills.skillsInput}
           />
         )}
-
-
       </div>
-
-
     );
   }
 }
