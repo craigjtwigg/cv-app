@@ -97,6 +97,21 @@ export default class App extends Component {
     });
   };
 
+  toggleInitial = (category) => {
+    this.setState({
+      ...this.state,
+      [category]: {
+        [`${category}Input`]: {
+          ...this.state[category][`${category}Input`],
+          isInitialInput: false,
+        },
+        [`${category}Store`]: this.state[category][`${category}Store`],
+        
+        [`${category}Preview`]: this.state[category][`${category}Preview`],
+      },
+    });
+  };
+
   //uuid used to asign a unique ID//
 
   generateId = (category) => {
@@ -107,6 +122,7 @@ export default class App extends Component {
           key: uuidv4(),
         },
         [`${category}Store`]: this.state[category][`${category}Store`],
+        [`${category}Preview`]: this.state[category][`${category}Preview`],
       },
     });
   };
@@ -134,20 +150,15 @@ export default class App extends Component {
 
   submitInputState = (e, category) => {
     e.preventDefault();
-    this.generateId(category);
+    setTimeout(this.generateId(category), 100)
     setTimeout(this.storeCategoryState(category), 100);
-
+    setTimeout(this.toggleInitial(category), 100);
     return;
   };
 
   render() {
-    const {
-      personalDetails,
-      profile,
-      employmentHistory,
-      skills,
-      education,
-    } = this.state;
+    const { personalDetails, profile, employmentHistory, skills, education } =
+      this.state;
     const submitInputState = this.submitInputState;
     const updateInputState = this.updateInputState;
 
