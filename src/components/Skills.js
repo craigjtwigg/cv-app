@@ -62,7 +62,7 @@ class SkillsPreview extends Component {
 export default class Skills extends Component {
   render() {
     return (
-      <div>
+      <section className="skills">
         <h2>Skills</h2>
 
         {this.props.skills.skillsPreview ? (
@@ -76,7 +76,7 @@ export default class Skills extends Component {
             skillsValues={this.props.skills.skillsInput}
           />
         )}
-      </div>
+      </section>
     );
   }
 }

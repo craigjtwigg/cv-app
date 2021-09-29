@@ -158,7 +158,7 @@ class EmploymentHistoryPreview extends Component {
 export default class EmploymentHistory extends Component {
   render() {
     return (
-      <div>
+      <section className="employmentHistory">
         <h2 className="section-header">Employment History</h2>
         {this.props.employmentHistory.employmentHistoryPreview ? (
           <EmploymentHistoryPreview
@@ -181,7 +181,7 @@ export default class EmploymentHistory extends Component {
             }
           />
         )}
-      </div>
+      </section>
     );
   }
 }

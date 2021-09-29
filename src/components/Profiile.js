@@ -62,7 +62,7 @@ class ProfileInput extends Component {
 export default class Profile extends Component {
   render() {
     return (
-      <div>
+      <section className="profile">
         <h2 className="section-header">Profile</h2>
         {this.props.profile.profilePreview ? (
           <ProfilePreview profileStore={this.props.profile.profileStore} />
@@ -75,7 +75,7 @@ export default class Profile extends Component {
             profileValues={this.props.profile.profileInput}
           />
         )}
-      </div>
+      </section>
     );
   }
 }

@@ -107,7 +107,7 @@ class PersonalDetailsPreview extends Component {
 export default class PersonalDetails extends Component {
   render() {
     return (
-      <div>
+      <section className="personalDetails">
         <h2 className="section header">Personal Details</h2>
         {this.props.personalDetails.personalDetailsPreview ? (
           <PersonalDetailsPreview
@@ -130,7 +130,7 @@ export default class PersonalDetails extends Component {
             }
           />
         )}
-      </div>
+      </section>
     );
   }
 }

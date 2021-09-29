@@ -125,7 +125,7 @@ class EducationPreview extends Component {
 export default class Education extends Component {
   render() {
     return (
-      <div>
+      <section className="education">
         <h2 className="section-header">Education</h2>
         {this.props.education.educationPreview ? (
           <EducationPreview
@@ -140,7 +140,7 @@ export default class Education extends Component {
             educationValues={this.props.education.educationInput}
           />
         )}
-      </div>
+      </section>
     );
   }
 }
