@@ -6,6 +6,7 @@ class PersonalDetailsInput extends Component {
   render() {
     return (
       <div>
+         <h2 className="section header">Personal Details</h2>
         <form
           onSubmit={(e) =>
             this.props.submitInputState(e, e.target.dataset.category)
@@ -91,12 +92,12 @@ class PersonalDetailsPreview extends Component {
         <h2 key={`namePreview:${item.key}`} id="namePreview">
           {item.name}
         </h2>
-        <h2 key={`emailPreview:${item.key}`} id="emailPreview">
+        <p key={`emailPreview:${item.key}`} id="emailPreview">
           {item.email}
-        </h2>
-        <h2 key={`phonePreview:${item.key}`} id="phonePreview">
+        </p>
+        <p key={`phonePreview:${item.key}`} id="phonePreview">
           {item.phone}
-        </h2>
+        </p>
       </div>
     ));
   }
@@ -108,7 +109,6 @@ export default class PersonalDetails extends Component {
   render() {
     return (
       <section className="personalDetails">
-        <h2 className="section header">Personal Details</h2>
         {this.props.personalDetails.personalDetailsPreview ? (
           <PersonalDetailsPreview
             personalDetailsStore={

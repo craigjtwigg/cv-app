@@ -106,19 +106,28 @@ class EducationInput extends Component {
 
 class EducationPreview extends Component {
   render() {
-    return this.props.educationStore.map((item) =>     (
+    return this.props.educationStore.map((item) => (
       <div className="educationPreview" key={`educationPreview:${item.key}`}>
-        <h2 key={`educationSchoolPreview:${item.key}`} id="schoolPreview">{item.school}</h2>
+        <h3 key={`educationSchoolPreview:${item.key}`} id="schoolPreview">
+          {item.school}
+        </h3>
+        <div className="startEnd">
+          <p key={`educationStartPreview:${item.key}`} id="startSchoolPreview">
+            {item.start} - 
+          </p>
+          <p key={`educationEndPreview:${item.key}`} id="endSchoolPreview">
+            {item.end}
+          </p>
+        </div>
 
-        <h2 key={`educationStartPreview:${item.key}`} id="startSchoolPreview">{item.start}</h2>
-        <h2 key={`educationEndPreview:${item.key}`} id="endSchoolPreview">{item.end}</h2>
-        <h2 key={`educationQualificationsPreview:${item.key}`} id="qualificationsPreview">
+        <p
+          key={`educationQualificationsPreview:${item.key}`}
+          id="qualificationsPreview"
+        >
           {item.qualifications}
-        </h2>
+        </p>
       </div>
-    ))
-    
-
+    ));
   }
 }
 

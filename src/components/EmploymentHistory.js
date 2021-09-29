@@ -129,27 +129,33 @@ class EmploymentHistoryPreview extends Component {
         className="employmentHistoryPreview"
         key={`employmentHistoryPreview:${item.key}`}
       >
-        <h2
+        <h3
           key={`employmentHistoryCompanyPreview:${item.key}`}
           id="companyPreview"
         >
           {item.company}
-        </h2>
-        <h2 key={`employmentHistoryTitlePreview:${item.key}`} id="titlePreview">
+        </h3>
+        <h4 key={`employmentHistoryTitlePreview:${item.key}`} id="titlePreview">
           {item.title}
-        </h2>
-        <h2 key={`employmentHistoryStartPreview:${item.key}`} id="startPreview">
-          {item.start}
-        </h2>
-        <h2 key={`employmentHistoryEndPreview:${item.key}`} id="endPreview">
-          {item.end}
-        </h2>
-        <h2
+        </h4>
+        <div className="startEnd">
+          <p
+            key={`employmentHistoryStartPreview:${item.key}`}
+            id="startPreview"
+          >
+            {item.start} - 
+          </p>
+          <p key={`employmentHistoryEndPreview:${item.key}`} id="endPreview">
+            {item.end}
+          </p>
+        </div>
+
+        <p
           key={`employmentHistoryDescriptionPreview:${item.key}`}
           id="descriptionPreview"
         >
           {item.description}
-        </h2>
+        </p>
       </div>
     ));
   }

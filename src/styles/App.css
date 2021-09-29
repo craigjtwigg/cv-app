@@ -1,4 +1,8 @@
-
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
 .App {
   text-align: center;
@@ -25,4 +29,20 @@ button {
 
 button:hover {
   cursor: pointer;
+}
+
+.startEnd {
+  display: flex;
+}
+
+.personalDetails, .profile, .employmentHistory, .skills, .education {
+  padding: 0.5rem;
+}
+
+.section-header {
+  padding-bottom: 0.5rem;
+}
+
+.employmentHistoryPreview, .skillsPreview, .educationPreview {
+  padding-bottom: 0.5rem;
 }

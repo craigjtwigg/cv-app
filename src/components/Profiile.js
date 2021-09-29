@@ -1,17 +1,5 @@
 import React, { Component } from 'react';
 
-class ProfilePreview extends Component {
-  render() {
-    return this.props.profileStore.map((item) => (
-      <div className="profilePreview" key={`profilePreview:${item.key}`}>
-        <h2 key={`profilePreview:${item.key}`} id="profilePreview">
-          {item.profile}
-        </h2>
-      </div>
-    ));
-  }
-}
-
 class ProfileInput extends Component {
   render() {
     return (
@@ -56,6 +44,18 @@ class ProfileInput extends Component {
         </form>
       </div>
     );
+  }
+}
+
+class ProfilePreview extends Component {
+  render() {
+    return this.props.profileStore.map((item) => (
+      <div className="profilePreview" key={`profilePreview:${item.key}`}>
+        <p key={`profilePreview:${item.key}`} id="profilePreview">
+          {item.profile}
+        </p>
+      </div>
+    ));
   }
 }
 

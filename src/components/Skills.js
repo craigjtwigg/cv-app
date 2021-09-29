@@ -51,9 +51,9 @@ class SkillsPreview extends Component {
   render() {
     return this.props.skillsStore.map((item) => (
       <div className="skillsPreview" key={`skillsPreview:${item.key}`}>
-        <h2 key={`skillPreview:${item.key}`} id="skillsPreview">
+        <p key={`skillPreview:${item.key}`} id="skillsPreview">
           {item.skill}
-        </h2>
+        </p>
       </div>
     ));
   }
