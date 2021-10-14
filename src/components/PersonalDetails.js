@@ -98,6 +98,7 @@ class PersonalDetailsPreview extends Component {
         <p key={`phonePreview:${item.key}`} id="phonePreview">
           {item.phone}
         </p>
+        <button onClick={() => this.props.toggleView(`personalDetails`)} data-key={`${item.key}`} key={`personalDetailsEdit:${item.key}`} type="button">EDIT</button>
       </div>
     ));
   }
@@ -111,6 +112,7 @@ export default class PersonalDetails extends Component {
       <section className="personalDetails">
         {this.props.personalDetails.personalDetailsPreview ? (
           <PersonalDetailsPreview
+            toggleView={this.props.toggleView}
             personalDetailsStore={
               this.props.personalDetails.personalDetailsStore
             }

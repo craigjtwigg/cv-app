@@ -93,7 +93,15 @@ export default class App extends Component {
   toggleView = (category) => {
     this.setState({
       ...this.state,
-      [`${category}Preview`]: !this.state[category][`${category}Preview`],
+      [category]: {
+        [`${category}Store`]: {
+          ...this.state[category][`${category}Store`]
+        },
+        [`${category}Input`]: {
+          ...this.state[category][`${category}Input`]
+        },
+        [`${category}Preview`]: !this.state[category][`${category}Preview`],
+      },
     });
   };
 
@@ -106,7 +114,7 @@ export default class App extends Component {
           isInitialInput: false,
         },
         [`${category}Store`]: this.state[category][`${category}Store`],
-        
+
         [`${category}Preview`]: this.state[category][`${category}Preview`],
       },
     });
@@ -150,7 +158,7 @@ export default class App extends Component {
 
   submitInputState = (e, category) => {
     e.preventDefault();
-    setTimeout(this.generateId(category), 100)
+    setTimeout(this.generateId(category), 100);
     setTimeout(this.storeCategoryState(category), 100);
     setTimeout(this.toggleInitial(category), 100);
     return;
@@ -161,6 +169,7 @@ export default class App extends Component {
       this.state;
     const submitInputState = this.submitInputState;
     const updateInputState = this.updateInputState;
+    const toggleView = this.toggleView;
 
     return (
       <>
@@ -169,27 +178,32 @@ export default class App extends Component {
         <PersonalDetails
           updateInputState={updateInputState}
           submitInputState={submitInputState}
+          toggleView={toggleView}
           personalDetails={personalDetails}
         />
 
         <Profile
           updateInputState={updateInputState}
           submitInputState={submitInputState}
+          toggleView={toggleView}
           profile={profile}
         />
         <EmploymentHistory
           updateInputState={updateInputState}
           submitInputState={submitInputState}
+          toggleView={toggleView}
           employmentHistory={employmentHistory}
         />
         <Skills
           updateInputState={updateInputState}
           submitInputState={submitInputState}
+          toggleView={toggleView}
           skills={skills}
         />
         <Education
           updateInputState={updateInputState}
           submitInputState={submitInputState}
+          toggleView={toggleView}
           education={education}
         />
       </>
