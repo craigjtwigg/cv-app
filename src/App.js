@@ -18,6 +18,7 @@ export default class App extends Component {
           name: '',
           email: '',
           phone: '',
+          key: uuidv4(),
           isInitialInput: true,
         },
         personalDetailsStore: [],
@@ -68,6 +69,11 @@ export default class App extends Component {
     this.submitInputState = this.submitInputState.bind(this);
     this.generateId = this.generateId.bind(this);
     this.toggleView = this.toggleView.bind(this);
+    this.returnState = this.returnState.bind(this);
+  }
+
+  returnState = (category, type) => {
+    return this.state[category][`${category}${type}`]
   }
 
   //onChange function to update the state of the targeted input field//
@@ -75,6 +81,7 @@ export default class App extends Component {
   updateInputState = (e, category, field) => {
     const sectionPreviousState = this.state[category][`${category}Input`];
     const storedState = this.state[category][`${category}Store`];
+
     this.setState({
       ...this.state,
       [category]: {
@@ -154,13 +161,33 @@ export default class App extends Component {
     }, 100);
   };
 
+  submitEdit = (category, key) => {
+        setTimeout(() => {
+      this.setState({
+        ...this.state,
+        [category]: {
+          [`${category}Input`]: {
+            ...this.state[category][`${category}Input`],
+          },
+          [`${category}Store`]: [this.state[category][`${category}Input`]],
+          [`${category}Preview`]: !this.state[category][`${category}Preview`],
+        },
+      });
+    }, 100);
+    console.log(key)
+  }
+
   //onSubmit function to update the stored state of the given section with a unique ID//
 
-  submitInputState = (e, category) => {
+  submitInputState = (e, category, key) => {
     e.preventDefault();
+    if (this.state[category][`${category}Input`].isInitialInput) {
     setTimeout(this.generateId(category), 100);
     setTimeout(this.storeCategoryState(category), 100);
     setTimeout(this.toggleInitial(category), 100);
+    console.log(key)
+    }
+    else this.submitEdit(category, key)
     return;
   };
 

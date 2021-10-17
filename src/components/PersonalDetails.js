@@ -9,8 +9,9 @@ class PersonalDetailsInput extends Component {
          <h2 className="section header">Personal Details</h2>
         <form
           onSubmit={(e) =>
-            this.props.submitInputState(e, e.target.dataset.category)
+            this.props.submitInputState(e, e.target.dataset.category, e.target.dataset.key)
           }
+          data-key={`${this.props.personalDetailsValues.key}`}
           data-category="personalDetails"
           data-section="personalDetailsInput"
           className="input-form"
@@ -26,6 +27,7 @@ class PersonalDetailsInput extends Component {
                 e.target.dataset.field
               )
             }
+            
             data-category="personalDetails"
             data-section="personalDetailsInput"
             data-field="name"
@@ -72,6 +74,7 @@ class PersonalDetailsInput extends Component {
 
           <button
             type="submit"
+            data-key={`${this.props.personalDetailsValues.key}`}
             data-category="personalDetails"
             data-section="personalDetailsInput"
             className="section-submit-button"
@@ -98,7 +101,7 @@ class PersonalDetailsPreview extends Component {
         <p key={`phonePreview:${item.key}`} id="phonePreview">
           {item.phone}
         </p>
-        <button onClick={() => this.props.toggleView(`personalDetails`)} data-key={`${item.key}`} key={`personalDetailsEdit:${item.key}`} type="button">EDIT</button>
+        <button onClick={() => this.props.toggleView(`personalDetails`)} data-key={`${item.key}`} key={`${item.key}`} type="button">EDIT</button>
       </div>
     ));
   }
