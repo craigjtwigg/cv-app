@@ -27,6 +27,7 @@ export default class App extends Component {
       profile: {
         profileInput: {
           profile: '',
+          key: uuidv4(),
           isInitialInput: true,
         },
         profileStore: [],
@@ -39,6 +40,7 @@ export default class App extends Component {
           start: '',
           end: '',
           description: '',
+          key: uuidv4(),
           isInitialInput: true,
         },
         employmentHistoryStore: [],
@@ -47,6 +49,7 @@ export default class App extends Component {
       skills: {
         skillsInput: {
           skill: '',
+          key: uuidv4(),
           isInitialInput: true,
         },
         skillsStore: [],
@@ -58,6 +61,7 @@ export default class App extends Component {
           start: '',
           end: '',
           qualifications: '',
+          key: uuidv4(),
           isInitialInput: true,
         },
         educationStore: [],

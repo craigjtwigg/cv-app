@@ -6,8 +6,9 @@ class ProfileInput extends Component {
       <div className="profile">
         <form
           onSubmit={(e) =>
-            this.props.submitInputState(e, e.target.dataset.category)
+            this.props.submitInputState(e, e.target.dataset.category, e.target.dataset.key)
           }
+          data-key={`${this.props.profileValues.key}`}
           data-category="profile"
           data-section="profileInput"
           className="input-form"
@@ -54,6 +55,7 @@ class ProfilePreview extends Component {
         <p key={`profilePreview:${item.key}`} id="profilePreview">
           {item.profile}
         </p>
+          <button onClick={() => this.props.toggleView(`profile`)} data-key={`${item.key}`} key={`${item.key}`} type="button">EDIT</button>
       </div>
     ));
   }
@@ -65,7 +67,8 @@ export default class Profile extends Component {
       <section className="profile">
         <h2 className="section-header">Profile</h2>
         {this.props.profile.profilePreview ? (
-          <ProfilePreview profileStore={this.props.profile.profileStore} />
+          <ProfilePreview profileStore={this.props.profile.profileStore}
+          toggleView={this.props.toggleView} />
         ) : (
           <ProfileInput
             updateInputState={this.props.updateInputState}

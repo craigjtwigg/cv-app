@@ -6,8 +6,9 @@ class EducationInput extends Component {
       <div>
         <form
           onSubmit={(e) =>
-            this.props.submitInputState(e, e.target.dataset.category)
+            this.props.submitInputState(e, e.target.dataset.category, e.target.dataset.key)
           }
+          data-key={`${this.props.educationValues.key}`}
           data-category="education"
           data-section="educationInput"
           className="input-form"
@@ -126,6 +127,7 @@ class EducationPreview extends Component {
         >
           {item.qualifications}
         </p>
+        <button onClick={() => this.props.toggleView(`education`)} data-key={`${item.key}`} key={`${item.key}`} type="button">EDIT</button>
       </div>
     ));
   }
@@ -139,6 +141,7 @@ export default class Education extends Component {
         {this.props.education.educationPreview ? (
           <EducationPreview
             educationStore={this.props.education.educationStore}
+            toggleView={this.props.toggleView}
           />
         ) : (
           <EducationInput

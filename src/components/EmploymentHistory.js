@@ -6,8 +6,9 @@ class EmploymentHistoryInput extends Component {
       <div>
         <form
           onSubmit={(e) =>
-            this.props.submitInputState(e, e.target.dataset.category)
+            this.props.submitInputState(e, e.target.dataset.category, e.target.dataset.key)
           }
+          data-key={`${this.props.employmentHistoryValues.key}`}
           data-category="employmentHistory"
           data-section="employmentHistoryInput"
           className="input-form"
@@ -156,6 +157,7 @@ class EmploymentHistoryPreview extends Component {
         >
           {item.description}
         </p>
+        <button onClick={() => this.props.toggleView(`employmentHistory`)} data-key={`${item.key}`} key={`${item.key}`} type="button">EDIT</button>
       </div>
     ));
   }
@@ -171,6 +173,7 @@ export default class EmploymentHistory extends Component {
             employmentHistoryStore={
               this.props.employmentHistory.employmentHistoryStore
             }
+            toggleView={this.props.toggleView}
           />
         ) : (
           <EmploymentHistoryInput

@@ -6,8 +6,9 @@ class SkillsInput extends Component {
       <div>
         <form
           onSubmit={(e) =>
-            this.props.submitInputState(e, e.target.dataset.category)
+            this.props.submitInputState(e, e.target.dataset.category, e.target.dataset.key)
           }
+          data-key={`${this.props.skillsValues.key}`}
           data-category="skills"
           data-section="skillsInput"
           className="input-form"
@@ -54,6 +55,7 @@ class SkillsPreview extends Component {
         <p key={`skillPreview:${item.key}`} id="skillsPreview">
           {item.skill}
         </p>
+        <button onClick={() => this.props.toggleView(`skills`)} data-key={`${item.key}`} key={`${item.key}`} type="button">EDIT</button>
       </div>
     ));
   }
@@ -66,7 +68,8 @@ export default class Skills extends Component {
         <h2>Skills</h2>
 
         {this.props.skills.skillsPreview ? (
-          <SkillsPreview skillsStore={this.props.skills.skillsStore} />
+          <SkillsPreview skillsStore={this.props.skills.skillsStore} 
+          toggleView={this.props.toggleView} />
         ) : (
           <SkillsInput
             updateInputState={this.props.updateInputState}
