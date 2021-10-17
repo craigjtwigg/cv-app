@@ -18,7 +18,7 @@ export default class App extends Component {
           name: '',
           email: '',
           phone: '',
-          key: uuidv4(),
+          key: '',
           isInitialInput: true,
         },
         personalDetailsStore: [],
@@ -123,6 +123,7 @@ export default class App extends Component {
         [`${category}Input`]: {
           ...this.state[category][`${category}Input`],
           isInitialInput: false,
+          key: uuidv4(),
         },
         [`${category}Store`]: this.state[category][`${category}Store`],
 
@@ -135,6 +136,7 @@ export default class App extends Component {
 
   generateId = (category) => {
     this.setState({
+      ...this.setState,
       [category]: {
         [`${category}Input`]: {
           ...this.state[category][`${category}Input`],
@@ -185,13 +187,18 @@ export default class App extends Component {
 
   submitInputState = (e, category, key) => {
     e.preventDefault();
+    
     if (this.state[category][`${category}Input`].isInitialInput) {
-    setTimeout(this.generateId(category), 100);
     setTimeout(this.storeCategoryState(category), 100);
+    
     setTimeout(this.toggleInitial(category), 100);
+   // setTimeout(this.generateId(category), 100);
     console.log(key)
     }
-    else this.submitEdit(category, key)
+    else {
+      this.submitEdit(category, key)
+      setTimeout(this.generateId(category), 100);
+    }
     return;
   };
 
