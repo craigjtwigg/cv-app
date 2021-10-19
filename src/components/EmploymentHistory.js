@@ -158,6 +158,7 @@ class EmploymentHistoryPreview extends Component {
           {item.description}
         </p>
         <button onClick={() => this.props.toggleView(`employmentHistory`)} data-key={`${item.key}`} key={`${item.key}`} type="button">EDIT</button>
+         
       </div>
     ));
   }
@@ -166,15 +167,19 @@ class EmploymentHistoryPreview extends Component {
 export default class EmploymentHistory extends Component {
   render() {
     return (
+      
       <section className="employmentHistory">
         <h2 className="section-header">Employment History</h2>
         {this.props.employmentHistory.employmentHistoryPreview ? (
+          <>
           <EmploymentHistoryPreview
             employmentHistoryStore={
               this.props.employmentHistory.employmentHistoryStore
             }
             toggleView={this.props.toggleView}
           />
+          <button type="button">ADD MORE</button>
+          </>
         ) : (
           <EmploymentHistoryInput
             updateInputState={this.props.updateInputState}

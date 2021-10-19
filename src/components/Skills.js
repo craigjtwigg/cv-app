@@ -14,9 +14,8 @@ class SkillsInput extends Component {
           className="input-form"
           id="skillsForm"
         >
-          <label htmlFor="skillsInput">Add a Skill: </label>
-          <input
-            type="text"
+          <label htmlFor="skillsInput"></label>
+          <textarea
             onChange={(e) =>
               this.props.updateInputState(
                 e,
@@ -31,7 +30,7 @@ class SkillsInput extends Component {
             data-section="skillsInput"
             data-field="skill"
             className="input-field"
-          ></input>
+          ></textarea>
 
           <button
             type="submit"

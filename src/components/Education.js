@@ -139,10 +139,13 @@ export default class Education extends Component {
       <section className="education">
         <h2 className="section-header">Education</h2>
         {this.props.education.educationPreview ? (
+          <>
           <EducationPreview
             educationStore={this.props.education.educationStore}
             toggleView={this.props.toggleView}
           />
+                    <button type="button">ADD MORE</button>
+          </>
         ) : (
           <EducationInput
             updateInputState={this.props.updateInputState}

@@ -45,6 +45,8 @@ export default class App extends Component {
         },
         employmentHistoryStore: [],
         employmentHistoryPreview: false,
+        employmentHistoryAddMoreMode: false,
+        employmentHistoryCount: 1,
       },
       skills: {
         skillsInput: {
@@ -66,6 +68,7 @@ export default class App extends Component {
         },
         educationStore: [],
         educationPreview: false,
+        educationAddMoreMode: false,
       },
     };
 
@@ -77,8 +80,8 @@ export default class App extends Component {
   }
 
   returnState = (category, type) => {
-    return this.state[category][`${category}${type}`]
-  }
+    return this.state[category][`${category}${type}`];
+  };
 
   //onChange function to update the state of the targeted input field//
 
@@ -95,6 +98,7 @@ export default class App extends Component {
         },
         [`${category}Store`]: storedState,
         [`${category}Preview`]: this.state[category][`${category}Preview`],
+        [`${category}Count`]: this.state[category][`${category}Count`],
       },
     });
   };
@@ -106,12 +110,13 @@ export default class App extends Component {
       ...this.state,
       [category]: {
         [`${category}Store`]: {
-          ...this.state[category][`${category}Store`]
+          ...this.state[category][`${category}Store`],
         },
         [`${category}Input`]: {
-          ...this.state[category][`${category}Input`]
+          ...this.state[category][`${category}Input`],
         },
         [`${category}Preview`]: !this.state[category][`${category}Preview`],
+        [`${category}Count`]: this.state[category][`${category}Count`],
       },
     });
   };
@@ -128,6 +133,7 @@ export default class App extends Component {
         [`${category}Store`]: this.state[category][`${category}Store`],
 
         [`${category}Preview`]: this.state[category][`${category}Preview`],
+        [`${category}Count`]: this.state[category][`${category}Count`],
       },
     });
   };
@@ -144,6 +150,7 @@ export default class App extends Component {
         },
         [`${category}Store`]: this.state[category][`${category}Store`],
         [`${category}Preview`]: this.state[category][`${category}Preview`],
+        [`${category}Count`]: this.state[category][`${category}Count`],
       },
     });
   };
@@ -162,13 +169,14 @@ export default class App extends Component {
             this.state[category][`${category}Input`]
           ),
           [`${category}Preview`]: !this.state[category][`${category}Preview`],
+          [`${category}Count`]: this.state[category][`${category}Count`],
         },
       });
     }, 100);
   };
 
   submitEdit = (category, key) => {
-        setTimeout(() => {
+    setTimeout(() => {
       this.setState({
         ...this.state,
         [category]: {
@@ -177,26 +185,25 @@ export default class App extends Component {
           },
           [`${category}Store`]: [this.state[category][`${category}Input`]],
           [`${category}Preview`]: !this.state[category][`${category}Preview`],
+          [`${category}Count`]: this.state[category][`${category}Count`],
         },
       });
     }, 100);
-    console.log(key)
-  }
+    console.log(key);
+  };
 
   //onSubmit function to update the stored state of the given section with a unique ID//
 
   submitInputState = (e, category, key) => {
     e.preventDefault();
-    
+
     if (this.state[category][`${category}Input`].isInitialInput) {
-    setTimeout(this.storeCategoryState(category), 100);
-    
-    setTimeout(this.toggleInitial(category), 100);
-   // setTimeout(this.generateId(category), 100);
-    console.log(key)
-    }
-    else {
-      this.submitEdit(category, key)
+      setTimeout(this.storeCategoryState(category), 100);
+      setTimeout(this.toggleInitial(category), 100);
+      // setTimeout(this.generateId(category), 100);
+      console.log(key);
+    } else {
+      this.submitEdit(category, key);
       setTimeout(this.generateId(category), 100);
     }
     return;
