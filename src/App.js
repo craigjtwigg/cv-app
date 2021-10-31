@@ -152,7 +152,7 @@ export default class App extends Component {
         [`${category}Input`]: {
           ...this.state[category][`${category}Input`],
         },
-        [`${category}Preview`]: this.state[category][`${category}Preview`],
+        //[`${category}Preview`]: this.state[category][`${category}Preview`],
         [`${category}Count`]: this.state[category][`${category}Count`],
         [`${category}AddMoreMode`]: !this.state[category][`${category}AddMoreMode`],
       },

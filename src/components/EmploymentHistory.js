@@ -187,12 +187,11 @@ export default class EmploymentHistory extends Component {
             employmentHistoryStore={
               this.props.employmentHistory.employmentHistoryStore
             }
-            employmentHistoryPreview={
-              this.props.employmentHistory.employmentHistoryPreview
-            }
+
             employmentHistoryValues={
               this.props.employmentHistory.employmentHistoryInput
             }
+            employmentHistoryAddMoreMode={this.props.employmentHistory.employmentHistoryAddMoreMode}
           />
         )}
                {this.props.employmentHistory.employmentHistoryAddMoreMode ? (
@@ -202,12 +201,10 @@ export default class EmploymentHistory extends Component {
             employmentHistoryStore={
               this.props.employmentHistory.employmentHistoryStore
             }
-            employmentHistoryPreview={
-              this.props.employmentHistory.employmentHistoryPreview
-            }
             employmentHistoryValues={
               this.props.employmentHistory.employmentHistoryInput
             }
+            employmentHistoryAddMoreMode={this.props.employmentHistory.employmentHistoryAddMoreMode}
           />
         ) : null}
          <button onClick={() => this.props.toggleAddMore('employmentHistory')} type="button">ADD MORE</button>
