@@ -144,7 +144,6 @@ export default class Education extends Component {
             educationStore={this.props.education.educationStore}
             toggleView={this.props.toggleView}
           />
-                    <button type="button">ADD MORE</button>
           </>
         ) : (
           <EducationInput
@@ -155,6 +154,7 @@ export default class Education extends Component {
             educationValues={this.props.education.educationInput}
           />
         )}
+        <button onClick={() => this.props.toggleAddMore('education')} type="button">ADD MORE</button>
       </section>
     );
   }

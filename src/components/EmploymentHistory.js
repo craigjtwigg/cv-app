@@ -178,7 +178,7 @@ export default class EmploymentHistory extends Component {
             }
             toggleView={this.props.toggleView}
           />
-          <button type="button">ADD MORE</button>
+         
           </>
         ) : (
           <EmploymentHistoryInput
@@ -195,6 +195,22 @@ export default class EmploymentHistory extends Component {
             }
           />
         )}
+               {this.props.employmentHistory.employmentHistoryAddMoreMode ? (
+          <EmploymentHistoryInput
+            updateInputState={this.props.updateInputState}
+            submitInputState={this.props.submitInputState}
+            employmentHistoryStore={
+              this.props.employmentHistory.employmentHistoryStore
+            }
+            employmentHistoryPreview={
+              this.props.employmentHistory.employmentHistoryPreview
+            }
+            employmentHistoryValues={
+              this.props.employmentHistory.employmentHistoryInput
+            }
+          />
+        ) : null}
+         <button onClick={() => this.props.toggleAddMore('employmentHistory')} type="button">ADD MORE</button>
       </section>
     );
   }

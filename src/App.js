@@ -77,6 +77,7 @@ export default class App extends Component {
     this.generateId = this.generateId.bind(this);
     this.toggleView = this.toggleView.bind(this);
     this.returnState = this.returnState.bind(this);
+    this.toggleAddMore = this.toggleAddMore.bind(this);
   }
 
   returnState = (category, type) => {
@@ -99,6 +100,7 @@ export default class App extends Component {
         [`${category}Store`]: storedState,
         [`${category}Preview`]: this.state[category][`${category}Preview`],
         [`${category}Count`]: this.state[category][`${category}Count`],
+        [`${category}AddMoreMode`]: this.state[category][`${category}AddMoreMode`],
       },
     });
   };
@@ -117,6 +119,7 @@ export default class App extends Component {
         },
         [`${category}Preview`]: !this.state[category][`${category}Preview`],
         [`${category}Count`]: this.state[category][`${category}Count`],
+        [`${category}AddMoreMode`]: this.state[category][`${category}AddMoreMode`],
       },
     });
   };
@@ -134,9 +137,27 @@ export default class App extends Component {
 
         [`${category}Preview`]: this.state[category][`${category}Preview`],
         [`${category}Count`]: this.state[category][`${category}Count`],
+        [`${category}AddMoreMode`]: this.state[category][`${category}AddMoreMode`],
       },
     });
   };
+
+  toggleAddMore = (category) => {
+        this.setState({
+      ...this.state,
+      [category]: {
+        [`${category}Store`]: {
+          ...this.state[category][`${category}Store`],
+        },
+        [`${category}Input`]: {
+          ...this.state[category][`${category}Input`],
+        },
+        [`${category}Preview`]: this.state[category][`${category}Preview`],
+        [`${category}Count`]: this.state[category][`${category}Count`],
+        [`${category}AddMoreMode`]: !this.state[category][`${category}AddMoreMode`],
+      },
+    });
+  }
 
   //uuid used to asign a unique ID//
 
@@ -151,6 +172,7 @@ export default class App extends Component {
         [`${category}Store`]: this.state[category][`${category}Store`],
         [`${category}Preview`]: this.state[category][`${category}Preview`],
         [`${category}Count`]: this.state[category][`${category}Count`],
+        [`${category}AddMoreMode`]: this.state[category][`${category}AddMoreMode`],
       },
     });
   };
@@ -170,6 +192,7 @@ export default class App extends Component {
           ),
           [`${category}Preview`]: !this.state[category][`${category}Preview`],
           [`${category}Count`]: this.state[category][`${category}Count`],
+          [`${category}AddMoreMode`]: this.state[category][`${category}AddMoreMode`],
         },
       });
     }, 100);
@@ -186,6 +209,7 @@ export default class App extends Component {
           [`${category}Store`]: [this.state[category][`${category}Input`]],
           [`${category}Preview`]: !this.state[category][`${category}Preview`],
           [`${category}Count`]: this.state[category][`${category}Count`],
+          [`${category}AddMoreMode`]: this.state[category][`${category}AddMoreMode`],
         },
       });
     }, 100);
@@ -215,6 +239,7 @@ export default class App extends Component {
     const submitInputState = this.submitInputState;
     const updateInputState = this.updateInputState;
     const toggleView = this.toggleView;
+    const toggleAddMore = this.toggleAddMore
 
     return (
       <>
@@ -238,6 +263,7 @@ export default class App extends Component {
           submitInputState={submitInputState}
           toggleView={toggleView}
           employmentHistory={employmentHistory}
+          toggleAddMore={toggleAddMore}
         />
         <Skills
           updateInputState={updateInputState}
@@ -250,6 +276,7 @@ export default class App extends Component {
           submitInputState={submitInputState}
           toggleView={toggleView}
           education={education}
+          toggleAddMore={toggleAddMore}
         />
       </>
     );
