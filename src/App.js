@@ -21,6 +21,7 @@ export default class App extends Component {
           key: '',
           isInitialInput: true,
         },
+        hasMultipleEntries: false,
         personalDetailsStore: [],
         personalDetailsPreview: false,
       },
@@ -30,6 +31,7 @@ export default class App extends Component {
           key: uuidv4(),
           isInitialInput: true,
         },
+        hasMultipleEntries: false,
         profileStore: [],
         profilePreview: false,
       },
@@ -44,6 +46,7 @@ export default class App extends Component {
           isInitialInput: true,
         },
         employmentHistoryStore: [],
+        hasMultipleEntries: false,
         employmentHistoryPreview: false,
         employmentHistoryAddMoreMode: false,
         employmentHistoryCount: 1,
@@ -54,6 +57,7 @@ export default class App extends Component {
           key: uuidv4(),
           isInitialInput: true,
         },
+        hasMultipleEntries: false,
         skillsStore: [],
         skillsPreview: false,
       },
@@ -66,6 +70,7 @@ export default class App extends Component {
           key: uuidv4(),
           isInitialInput: true,
         },
+        hasMultipleEntries: false,
         educationStore: [],
         educationPreview: false,
         educationAddMoreMode: false,
@@ -101,6 +106,7 @@ export default class App extends Component {
         [`${category}Preview`]: this.state[category][`${category}Preview`],
         [`${category}Count`]: this.state[category][`${category}Count`],
         [`${category}AddMoreMode`]: this.state[category][`${category}AddMoreMode`],
+        hasMultipleEntries: this.state[category].hasMultipleEntries,
       },
     });
   };
@@ -120,6 +126,7 @@ export default class App extends Component {
         [`${category}Preview`]: !this.state[category][`${category}Preview`],
         [`${category}Count`]: this.state[category][`${category}Count`],
         [`${category}AddMoreMode`]: this.state[category][`${category}AddMoreMode`],
+        hasMultipleEntries: this.state[category].hasMultipleEntries,
       },
     });
   };
@@ -138,11 +145,13 @@ export default class App extends Component {
         [`${category}Preview`]: this.state[category][`${category}Preview`],
         [`${category}Count`]: this.state[category][`${category}Count`],
         [`${category}AddMoreMode`]: this.state[category][`${category}AddMoreMode`],
+        hasMultipleEntries: this.state[category].hasMultipleEntries,
       },
     });
   };
 
   toggleAddMore = (category) => {
+    category === 'education' || category === 'employmentHistory' ? this.inputToArray(category) :
         this.setState({
       ...this.state,
       [category]: {
@@ -155,6 +164,27 @@ export default class App extends Component {
         //[`${category}Preview`]: this.state[category][`${category}Preview`],
         [`${category}Count`]: this.state[category][`${category}Count`],
         [`${category}AddMoreMode`]: !this.state[category][`${category}AddMoreMode`],
+        hasMultipleEntries: true,
+      },
+    });
+  }
+
+  // convert input state into an array //
+
+  inputToArray = (category) => {
+            this.setState({
+      ...this.state,
+      [category]: {
+        [`${category}Store`]: {
+          ...this.state[category][`${category}Store`],
+        },
+        [`${category}Input`]: {
+          ...this.state[category][`${category}Store`],
+        },
+       // [`${category}Preview`]: this.state[category][`${category}Preview`],
+        [`${category}Count`]: this.state[category][`${category}Count`],
+        [`${category}AddMoreMode`]: !this.state[category][`${category}AddMoreMode`],
+        hasMultipleEntries: true,
       },
     });
   }
@@ -173,6 +203,7 @@ export default class App extends Component {
         [`${category}Preview`]: this.state[category][`${category}Preview`],
         [`${category}Count`]: this.state[category][`${category}Count`],
         [`${category}AddMoreMode`]: this.state[category][`${category}AddMoreMode`],
+        hasMultipleEntries: this.state[category].hasMultipleEntries,
       },
     });
   };
@@ -193,6 +224,7 @@ export default class App extends Component {
           [`${category}Preview`]: !this.state[category][`${category}Preview`],
           [`${category}Count`]: this.state[category][`${category}Count`],
           [`${category}AddMoreMode`]: this.state[category][`${category}AddMoreMode`],
+          hasMultipleEntries: this.state[category].hasMultipleEntries,
         },
       });
     }, 100);
@@ -210,6 +242,7 @@ export default class App extends Component {
           [`${category}Preview`]: !this.state[category][`${category}Preview`],
           [`${category}Count`]: this.state[category][`${category}Count`],
           [`${category}AddMoreMode`]: this.state[category][`${category}AddMoreMode`],
+          hasMultipleEntries: this.state[category].hasMultipleEntries,
         },
       });
     }, 100);
@@ -230,6 +263,7 @@ export default class App extends Component {
       this.submitEdit(category, key);
       setTimeout(this.generateId(category), 100);
     }
+  
     return;
   };
 
