@@ -105,7 +105,8 @@ export default class App extends Component {
         [`${category}Store`]: storedState,
         [`${category}Preview`]: this.state[category][`${category}Preview`],
         [`${category}Count`]: this.state[category][`${category}Count`],
-        [`${category}AddMoreMode`]: this.state[category][`${category}AddMoreMode`],
+        [`${category}AddMoreMode`]:
+          this.state[category][`${category}AddMoreMode`],
         hasMultipleEntries: this.state[category].hasMultipleEntries,
       },
     });
@@ -125,7 +126,8 @@ export default class App extends Component {
         },
         [`${category}Preview`]: !this.state[category][`${category}Preview`],
         [`${category}Count`]: this.state[category][`${category}Count`],
-        [`${category}AddMoreMode`]: this.state[category][`${category}AddMoreMode`],
+        [`${category}AddMoreMode`]:
+          this.state[category][`${category}AddMoreMode`],
         hasMultipleEntries: this.state[category].hasMultipleEntries,
       },
     });
@@ -144,50 +146,77 @@ export default class App extends Component {
 
         [`${category}Preview`]: this.state[category][`${category}Preview`],
         [`${category}Count`]: this.state[category][`${category}Count`],
-        [`${category}AddMoreMode`]: this.state[category][`${category}AddMoreMode`],
+        [`${category}AddMoreMode`]:
+          this.state[category][`${category}AddMoreMode`],
         hasMultipleEntries: this.state[category].hasMultipleEntries,
       },
     });
   };
 
+  
+
   toggleAddMore = (category) => {
-    category === 'education' || category === 'employmentHistory' ? this.inputToArray(category) :
-        this.setState({
-      ...this.state,
-      [category]: {
-        [`${category}Store`]: {
-          ...this.state[category][`${category}Store`],
-        },
-        [`${category}Input`]: {
-          ...this.state[category][`${category}Input`],
-        },
-        //[`${category}Preview`]: this.state[category][`${category}Preview`],
-        [`${category}Count`]: this.state[category][`${category}Count`],
-        [`${category}AddMoreMode`]: !this.state[category][`${category}AddMoreMode`],
-        hasMultipleEntries: true,
-      },
-    });
-  }
+    category === 'education' || category === 'employmentHistory'
+      ? this.inputToArray(category)
+      : this.setState({
+          ...this.state,
+          [category]: {
+            [`${category}Store`]: {
+              ...this.state[category][`${category}Store`],
+            },
+            [`${category}Input`]: {
+              ...this.state[category][`${category}Input`],
+            },
+            //[`${category}Preview`]: this.state[category][`${category}Preview`],
+            [`${category}Count`]: this.state[category][`${category}Count`],
+            [`${category}AddMoreMode`]:
+              !this.state[category][`${category}AddMoreMode`],
+            hasMultipleEntries: true,
+          },
+        });
+  };
+
+
+      educationMore = () => {
+      return {
+      school: '',
+      start: '',
+      end: '',
+      qualifications: '',
+      key: uuidv4(),
+      isInitialInput: true,
+      }
+    };
+
+    employmentHistoryMore = () => {
+      return {
+      company: '',
+      title: '',
+      start: '',
+      end: '',
+      description: '',
+      key: uuidv4(),
+      isInitialInput: true,
+      }
+    };
 
   // convert input state into an array //
 
   inputToArray = (category) => {
-            this.setState({
+
+    this.setState({
       ...this.state,
       [category]: {
-        [`${category}Store`]: {
-          ...this.state[category][`${category}Store`],
-        },
-        [`${category}Input`]: {
-          ...this.state[category][`${category}Store`],
-        },
-       // [`${category}Preview`]: this.state[category][`${category}Preview`],
+        [`${category}Input`]: [...this.state[category][`${category}Store`], category === 'employmentHistory' ? this.employmentHistoryMore() : this.educationMore()],
+        [`${category}Store`]: this.state[category][`${category}Store`],
+        // [`${category}Preview`]: this.state[category][`${category}Preview`],
         [`${category}Count`]: this.state[category][`${category}Count`],
-        [`${category}AddMoreMode`]: !this.state[category][`${category}AddMoreMode`],
+        [`${category}AddMoreMode`]:
+          !this.state[category][`${category}AddMoreMode`],
         hasMultipleEntries: true,
       },
     });
-  }
+  };
 
   //uuid used to asign a unique ID//
 
@@ -202,7 +231,8 @@ export default class App extends Component {
         [`${category}Store`]: this.state[category][`${category}Store`],
         [`${category}Preview`]: this.state[category][`${category}Preview`],
         [`${category}Count`]: this.state[category][`${category}Count`],
-        [`${category}AddMoreMode`]: this.state[category][`${category}AddMoreMode`],
+        [`${category}AddMoreMode`]:
+          this.state[category][`${category}AddMoreMode`],
         hasMultipleEntries: this.state[category].hasMultipleEntries,
       },
     });
@@ -223,7 +253,8 @@ export default class App extends Component {
           ),
           [`${category}Preview`]: !this.state[category][`${category}Preview`],
           [`${category}Count`]: this.state[category][`${category}Count`],
-          [`${category}AddMoreMode`]: this.state[category][`${category}AddMoreMode`],
+          [`${category}AddMoreMode`]:
+            this.state[category][`${category}AddMoreMode`],
           hasMultipleEntries: this.state[category].hasMultipleEntries,
         },
       });
@@ -241,7 +272,8 @@ export default class App extends Component {
           [`${category}Store`]: [this.state[category][`${category}Input`]],
           [`${category}Preview`]: !this.state[category][`${category}Preview`],
           [`${category}Count`]: this.state[category][`${category}Count`],
-          [`${category}AddMoreMode`]: this.state[category][`${category}AddMoreMode`],
+          [`${category}AddMoreMode`]:
+            this.state[category][`${category}AddMoreMode`],
           hasMultipleEntries: this.state[category].hasMultipleEntries,
         },
       });
@@ -263,7 +295,7 @@ export default class App extends Component {
       this.submitEdit(category, key);
       setTimeout(this.generateId(category), 100);
     }
-  
+
     return;
   };
 
@@ -273,7 +305,7 @@ export default class App extends Component {
     const submitInputState = this.submitInputState;
     const updateInputState = this.updateInputState;
     const toggleView = this.toggleView;
-    const toggleAddMore = this.toggleAddMore
+    const toggleAddMore = this.toggleAddMore;
 
     return (
       <>
