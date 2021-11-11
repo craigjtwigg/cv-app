@@ -91,25 +91,44 @@ export default class App extends Component {
 
   //onChange function to update the state of the targeted input field//
 
-  updateInputState = (e, category, field) => {
+  updateInputState = (e, category, field, key) => {
     const sectionPreviousState = this.state[category][`${category}Input`];
     const storedState = this.state[category][`${category}Store`];
 
-    this.setState({
-      ...this.state,
-      [category]: {
-        [`${category}Input`]: {
-          ...sectionPreviousState,
-          [field]: e.target.value,
-        },
-        [`${category}Store`]: storedState,
-        [`${category}Preview`]: this.state[category][`${category}Preview`],
-        [`${category}Count`]: this.state[category][`${category}Count`],
-        [`${category}AddMoreMode`]:
-          this.state[category][`${category}AddMoreMode`],
-        hasMultipleEntries: this.state[category].hasMultipleEntries,
-      },
-    });
+    this.state[category].hasMultipleEntries
+      ? this.setState({
+          ...this.state,
+          [category]: {
+            [`${category}Input`]: sectionPreviousState.map((item) =>
+                item.key === e.target.dataset.key ? {
+                  ...item,
+              [field]: e.target.value,
+              
+            }: item
+              ),
+            [`${category}Store`]: storedState,
+            [`${category}Preview`]: this.state[category][`${category}Preview`],
+            [`${category}Count`]: this.state[category][`${category}Count`],
+            [`${category}AddMoreMode`]:
+              this.state[category][`${category}AddMoreMode`],
+            hasMultipleEntries: this.state[category].hasMultipleEntries,
+          },
+        })
+      : this.setState({
+          ...this.state,
+          [category]: {
+            [`${category}Input`]: {
+              ...sectionPreviousState,
+              [field]: e.target.value,
+            },
+            [`${category}Store`]: storedState,
+            [`${category}Preview`]: this.state[category][`${category}Preview`],
+            [`${category}Count`]: this.state[category][`${category}Count`],
+            [`${category}AddMoreMode`]:
+              this.state[category][`${category}AddMoreMode`],
+            hasMultipleEntries: this.state[category].hasMultipleEntries,
+          },
+        });
   };
 
   //method to toggle between input and preview modes//
@@ -153,8 +172,6 @@ export default class App extends Component {
     });
   };
 
-  
-
   toggleAddMore = (category) => {
     category === 'education' || category === 'employmentHistory'
       ? this.inputToArray(category)
@@ -176,20 +193,19 @@ export default class App extends Component {
         });
   };
 
-
-      educationMore = () => {
-      return {
+  educationMore = () => {
+    return {
       school: '',
       start: '',
       end: '',
       qualifications: '',
       key: uuidv4(),
       isInitialInput: true,
-      }
     };
+  };
 
-    employmentHistoryMore = () => {
-      return {
+  employmentHistoryMore = () => {
+    return {
       company: '',
       title: '',
       start: '',
@@ -197,17 +213,21 @@ export default class App extends Component {
       description: '',
       key: uuidv4(),
       isInitialInput: true,
-      }
     };
+  };
 
   // convert input state into an array //
 
   inputToArray = (category) => {
-
     this.setState({
       ...this.state,
       [category]: {
-        [`${category}Input`]: [...this.state[category][`${category}Store`], category === 'employmentHistory' ? this.employmentHistoryMore() : this.educationMore()],
+        [`${category}Input`]: [
+          ...this.state[category][`${category}Store`],
+          category === 'employmentHistory'
+            ? this.employmentHistoryMore()
+            : this.educationMore(),
+        ],
         [`${category}Store`]: this.state[category][`${category}Store`],
         // [`${category}Preview`]: this.state[category][`${category}Preview`],
         [`${category}Count`]: this.state[category][`${category}Count`],
@@ -245,10 +265,10 @@ export default class App extends Component {
       this.setState({
         ...this.state,
         [category]: {
-          [`${category}Input`]: {
+          [`${category}Input`]: this.state[category].hasMultipleEntries ? this.state[category][`${category}Input`] : {
             ...this.state[category][`${category}Input`],
           },
-          [`${category}Store`]: this.state[category][`${category}Store`].concat(
+          [`${category}Store`]: this.state[category].hasMultipleEntries ? this.state[category][`${category}Input`] : this.state[category][`${category}Store`].concat(
             this.state[category][`${category}Input`]
           ),
           [`${category}Preview`]: !this.state[category][`${category}Preview`],
@@ -266,7 +286,7 @@ export default class App extends Component {
       this.setState({
         ...this.state,
         [category]: {
-          [`${category}Input`]: {
+          [`${category}Input`]: this.state[category].hasMultipleEntries ? this.state[category][`${category}Input`] : {
             ...this.state[category][`${category}Input`],
           },
           [`${category}Store`]: [this.state[category][`${category}Input`]],
@@ -286,7 +306,7 @@ export default class App extends Component {
   submitInputState = (e, category, key) => {
     e.preventDefault();
 
-    if (this.state[category][`${category}Input`].isInitialInput) {
+    if (this.state[category][`${category}Input`].isInitialInput && !this.state[category].hasMultipleEntries) {
       setTimeout(this.storeCategoryState(category), 100);
       setTimeout(this.toggleInitial(category), 100);
       // setTimeout(this.generateId(category), 100);

@@ -25,9 +25,11 @@ class EmploymentHistoryInput extends Component {
               this.props.updateInputState(
                 e,
                 e.target.dataset.category,
-                e.target.dataset.field
+                e.target.dataset.field,
+                e.target.dataset.key
               )
             }
+            data-key={ this.props.hasMultipleEntries ? this.props.entryKey : `${this.props.employmentHistoryValues.key}`}
             data-category="employmentHistory"
             data-section="employmentHistoryInput"
             data-field="company"
@@ -43,9 +45,11 @@ class EmploymentHistoryInput extends Component {
               this.props.updateInputState(
                 e,
                 e.target.dataset.category,
-                e.target.dataset.field
+                e.target.dataset.field,
+                e.target.dataset.key
               )
             }
+            data-key={ this.props.hasMultipleEntries ? this.props.entryKey : `${this.props.employmentHistoryValues.key}`}
             data-category="employmentHistory"
             data-section="employmentHistoryInput"
             data-field="title"
@@ -61,9 +65,11 @@ class EmploymentHistoryInput extends Component {
               this.props.updateInputState(
                 e,
                 e.target.dataset.category,
-                e.target.dataset.field
+                e.target.dataset.field,
+                e.target.dataset.key,
               )
             }
+            data-key={ this.props.hasMultipleEntries ? this.props.entryKey : `${this.props.employmentHistoryValues.key}`}
             data-category="employmentHistory"
             data-section="employmentHistoryInput"
             data-field="start"
@@ -79,9 +85,11 @@ class EmploymentHistoryInput extends Component {
               this.props.updateInputState(
                 e,
                 e.target.dataset.category,
-                e.target.dataset.field
+                e.target.dataset.field,
+                e.target.dataset.key
               )
             }
+            data-key={ this.props.hasMultipleEntries ? this.props.entryKey : `${this.props.employmentHistoryValues.key}`}
             data-category="employmentHistory"
             data-section="employmentHistoryInput"
             data-field="end"
@@ -99,9 +107,11 @@ class EmploymentHistoryInput extends Component {
               this.props.updateInputState(
                 e,
                 e.target.dataset.category,
-                e.target.dataset.field
+                e.target.dataset.field,
+                e.target.dataset.key
               )
             }
+            data-key={ this.props.hasMultipleEntries ? this.props.entryKey : `${this.props.employmentHistoryValues.key}`}
             data-category="employmentHistory"
             data-section="employmentHistoryInput"
             data-field="description"
@@ -180,14 +190,14 @@ export default class EmploymentHistory extends Component {
       <section className="employmentHistory">
         <h2 className="section-header">Employment History</h2>
         {this.props.employmentHistory.employmentHistoryPreview ? (
-          <>
+        
             <EmploymentHistoryPreview
               employmentHistoryStore={
                 this.props.employmentHistory.employmentHistoryStore
               }
               toggleView={this.props.toggleView}
             />
-          </>
+          
         ) : this.props.employmentHistory.hasMultipleEntries ? (
           this.props.employmentHistory.employmentHistoryInput.map((item) => (
             <EmploymentHistoryInput
