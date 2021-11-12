@@ -6,6 +6,7 @@ class EmploymentHistoryInput extends Component {
       <div>
         <form
           onSubmit={(e) =>
+            this.props.hasMultipleEntries ? this.props.storeMultiple(e, e.target.dataset.category) :
             this.props.submitInputState(
               e,
               e.target.dataset.category,
@@ -189,17 +190,18 @@ export default class EmploymentHistory extends Component {
     return (
       <section className="employmentHistory">
         <h2 className="section-header">Employment History</h2>
-        {this.props.employmentHistory.employmentHistoryPreview ? (
-        
+        {this.props.employmentHistory.employmentHistoryPreview ?
+        (
+          <>
             <EmploymentHistoryPreview
               employmentHistoryStore={
                 this.props.employmentHistory.employmentHistoryStore
               }
               toggleView={this.props.toggleView}
             />
-          
+          </>
         ) : this.props.employmentHistory.hasMultipleEntries ? (
-          this.props.employmentHistory.employmentHistoryInput.map((item) => (
+           this.props.employmentHistory.employmentHistoryInput.map((item) => (
             <EmploymentHistoryInput
             entry={item}
               entryKey={item.key}
@@ -215,6 +217,8 @@ export default class EmploymentHistory extends Component {
               employmentHistoryAddMoreMode={
                 this.props.employmentHistory.employmentHistoryAddMoreMode
               }
+              storeMultiple={this.props.storeMultiple}
+              employmentHistory={this.props.employmentHistory}
             />
           ))
         ) : (
@@ -225,12 +229,14 @@ export default class EmploymentHistory extends Component {
             employmentHistoryStore={
               this.props.employmentHistory.employmentHistoryStore
             }
+            storeMultiple={this.props.storeMultiple}
             employmentHistoryValues={
               this.props.employmentHistory.employmentHistoryInput
             }
             employmentHistoryAddMoreMode={
               this.props.employmentHistory.employmentHistoryAddMoreMode
             }
+            employmentHistory={this.props.employmentHistory}
           />
         )}
 

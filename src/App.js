@@ -83,6 +83,7 @@ export default class App extends Component {
     this.toggleView = this.toggleView.bind(this);
     this.returnState = this.returnState.bind(this);
     this.toggleAddMore = this.toggleAddMore.bind(this);
+    this.storeMultiple = this.storeMultiple.bind(this)
   }
 
   returnState = (category, type) => {
@@ -106,7 +107,7 @@ export default class App extends Component {
               
             }: item
               ),
-            [`${category}Store`]: storedState,
+            [`${category}Store`]: sectionPreviousState,
             [`${category}Preview`]: this.state[category][`${category}Preview`],
             [`${category}Count`]: this.state[category][`${category}Count`],
             [`${category}AddMoreMode`]:
@@ -229,7 +230,7 @@ export default class App extends Component {
             : this.educationMore(),
         ],
         [`${category}Store`]: this.state[category][`${category}Store`],
-        // [`${category}Preview`]: this.state[category][`${category}Preview`],
+        [`${category}Preview`]: false,
         [`${category}Count`]: this.state[category][`${category}Count`],
         [`${category}AddMoreMode`]:
           !this.state[category][`${category}AddMoreMode`],
@@ -265,13 +266,14 @@ export default class App extends Component {
       this.setState({
         ...this.state,
         [category]: {
+          [`${category}Preview`]: !this.state[category][`${category}Preview`],
           [`${category}Input`]: this.state[category].hasMultipleEntries ? this.state[category][`${category}Input`] : {
             ...this.state[category][`${category}Input`],
           },
           [`${category}Store`]: this.state[category].hasMultipleEntries ? this.state[category][`${category}Input`] : this.state[category][`${category}Store`].concat(
             this.state[category][`${category}Input`]
           ),
-          [`${category}Preview`]: !this.state[category][`${category}Preview`],
+          
           [`${category}Count`]: this.state[category][`${category}Count`],
           [`${category}AddMoreMode`]:
             this.state[category][`${category}AddMoreMode`],
@@ -281,16 +283,35 @@ export default class App extends Component {
     }, 100);
   };
 
+  storeMultiple = (e, category) => {
+    console.log('yis')
+    e.preventDefault();
+    this.setState({
+      ...this.state,
+              [category]: {
+                 [`${category}Preview`]: true,
+          [`${category}Input`]: this.state[category][`${category}Input`],
+          [`${category}Store`]: this.state[category][`${category}Store`],
+         
+          [`${category}Count`]: this.state[category][`${category}Count`],
+          [`${category}AddMoreMode`]:
+            this.state[category][`${category}AddMoreMode`],
+          hasMultipleEntries: true,
+        },
+    })
+  }
+
   submitEdit = (category, key) => {
     setTimeout(() => {
       this.setState({
         ...this.state,
         [category]: {
+          [`${category}Preview`]: !this.state[category][`${category}Preview`],
           [`${category}Input`]: this.state[category].hasMultipleEntries ? this.state[category][`${category}Input`] : {
             ...this.state[category][`${category}Input`],
           },
           [`${category}Store`]: [this.state[category][`${category}Input`]],
-          [`${category}Preview`]: !this.state[category][`${category}Preview`],
+          
           [`${category}Count`]: this.state[category][`${category}Count`],
           [`${category}AddMoreMode`]:
             this.state[category][`${category}AddMoreMode`],
@@ -305,8 +326,9 @@ export default class App extends Component {
 
   submitInputState = (e, category, key) => {
     e.preventDefault();
-
-    if (this.state[category][`${category}Input`].isInitialInput && !this.state[category].hasMultipleEntries) {
+    
+    if (this.state[category].hasMultipleEntries) this.storeMultiple(category)
+    if (this.state[category][`${category}Input`].isInitialInput ) {
       setTimeout(this.storeCategoryState(category), 100);
       setTimeout(this.toggleInitial(category), 100);
       // setTimeout(this.generateId(category), 100);
@@ -326,7 +348,7 @@ export default class App extends Component {
     const updateInputState = this.updateInputState;
     const toggleView = this.toggleView;
     const toggleAddMore = this.toggleAddMore;
-
+    const storeMultiple = this.storeMultiple
     return (
       <>
         <Header />
@@ -348,6 +370,7 @@ export default class App extends Component {
           updateInputState={updateInputState}
           submitInputState={submitInputState}
           toggleView={toggleView}
+          storeMultiple={storeMultiple}
           employmentHistory={employmentHistory}
           toggleAddMore={toggleAddMore}
         />
